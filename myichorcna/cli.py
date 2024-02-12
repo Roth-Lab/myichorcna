@@ -12,7 +12,7 @@ from myichorcna.run import run_ichorCNA
 )
 @click.option(
     '-s',
-    '--ichorcna-settings',
+    '--settings',
     type=click.STRING,
     required=True,
     help="Path to config file for settings of ichorCNA (.yaml)."
