@@ -1,8 +1,15 @@
 import click
-from myichorcna.run import run_ichorCNA
+from myichorcna.run import inference
 
 
 @click.command()
+@click.option(
+    '-o',
+    '--output-directory',
+    type=click.STRING,
+    required=True,
+    help="Path to directory to output results from ichorCNA."
+)
 @click.option(
     '-c',
     '--ctdna-data-file',
@@ -17,15 +24,8 @@ from myichorcna.run import run_ichorCNA
     required=True,
     help="Path to config file for settings of ichorCNA (.yaml)."
 )
-@click.option(
-    '-o',
-    '--output-directory',
-    type=click.STRING,
-    required=True,
-    help="Path to directory to output results from ichorCNA."
-)
 def perform_inference(**kwargs):
-    run_ichorCNA(**kwargs)
+    inference(**kwargs)
 
 
 @click.group(name='myichorcna')
