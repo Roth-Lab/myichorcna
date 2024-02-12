@@ -26,6 +26,7 @@ A description of each required file is provided below:
 
 ### Example Run
 We can run ichorCNA on the example data provided outputted to `example/results`:
+
 `myichorcna perform-inference --output-directory 'example/results' --ctdna-data-file 'example/ctdna.wig' --ichorcna-settings 'example/settings.yaml'`
 
 ### Contact
