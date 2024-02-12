@@ -4,7 +4,7 @@ My repository to run [ichorCNA](https://github.com/broadinstitute/ichorCNA) deve
 ## Installation
 1. Clone this repo
 ```
-git clone https://github.com/matteolepur/cfclone.git
+git clone https://github.com/matteolepur/myichorcna.git
 ```
 2. `cd` into this repo and install cfClone
 ``` 
