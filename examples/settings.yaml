@@ -1,31 +1,19 @@
-settings:
-  code:
-    repo: ../ichorCNA
-    rscript: ../ichorCNA/scripts/runIchorCNA.R
-  data_files:
-    gc_wig: ../ichorCNA/inst/extdata/gc_hg19_500kb.wig
-    map_wig: ../ichorCNA/inst/extdata/map_hg19_500kb.wig
-    normal_panel: ../ichorCNA/inst/extdata/HD_ULP_PoN_500kb_median_normAutosome_mapScoreFiltered_median.rds
-    centromere: ../ichorCNA/inst/extdata/GRCh37.p13_centromere_UCSC-gapTable.txt
-    genome_build: hg19  # not included in hg38
-    genome_style: NCBI
-  model_settings:
-    estimate_normal: TRUE
-    estimate_ploidy: TRUE
-    estimate_clonality: TRUE
-    normal_restarts: c(0.5,0.6,0.7,0.8,0.9,0.95)  # normal fraction initialization values
-    ploidy: c(2)
-    subclone_states: c(1,3)  # states to use for subclone copy numbers
-    max_cn: 5  # maximum copy number
-    min_map_score: 0.75  # not included in hg38
-    max_frac_genome_subclone: 0.5  # Exclude solutions if total length of subclonal CNAs > this fraction of the genome. Not included in hg38
-    max_frac_cna_subclone: 0.7  # Exclude solutions if total length of subclonal CNAs > this fraction of total CNA length. Not included in hg38
-    frac_reads_chry_male: 0.002  # not included in hg38
-    chrs: c(1:22)
-    chrs_train: c(1:22)  # chromosomes to train ichor model parameters e.g. tumour fraction.
-    exons: NULL
-    include_homd: FALSE  # if true, include homozygous deletion state
-    txn_e: 0.9999  # controls segmentation - higher leads to more specificity and fewer segments, lower leads to higher sensitivity and more segments
-    txn_strength: 10000  # controls segmentation - higher (ex. 10000000) leads to more specificity and fewer segments, lower (ex. 100) leads to higher sensitivity and more segments
-    plot_file_type: pdf
-    plot_ylim: c(-2,4)
+estimate_normal: TRUE
+estimate_ploidy: TRUE
+estimate_clonality: TRUE
+normal_restarts: c(0.5,0.6,0.7,0.8,0.9,0.95)  # normal fraction initialization values
+ploidy: c(2)
+subclone_states: c(1,3)  # states to use for subclone copy numbers
+max_cn: 5  # maximum copy number
+min_map_score: 0.75  # not included in hg38
+max_frac_genome_subclone: 0.5  # Exclude solutions if total length of subclonal CNAs > this fraction of the genome. Not included in hg38
+max_frac_cna_subclone: 0.7  # Exclude solutions if total length of subclonal CNAs > this fraction of total CNA length. Not included in hg38
+frac_reads_chry_male: 0.002  # not included in hg38
+chrs: c(1:22)
+chrs_train: c(1:22)  # chromosomes to train ichor model parameters e.g. tumour fraction.
+exons: NULL
+include_homd: FALSE  # if true, include homozygous deletion state
+txn_e: 0.9999  # controls segmentation - higher leads to more specificity and fewer segments, lower leads to higher sensitivity and more segments
+txn_strength: 10000  # controls segmentation - higher (ex. 10000000) leads to more specificity and fewer segments, lower (ex. 100) leads to higher sensitivity and more segments
+plot_file_type: pdf
+plot_ylim: c(-2,4)

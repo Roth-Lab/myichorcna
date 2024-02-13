@@ -1,4 +1,5 @@
 from myichorcna.utils import make_output_dirs, load_config_file
+from myichorcna.settings import Settings
 import subprocess
 
 
@@ -18,35 +19,30 @@ def inference(
     # create output directories
     make_output_dirs(output_directory)
 
-    # load ichorCNA settings
-    config = load_config_file(settings)
-    code_settings = config['settings']['code']
-    files_settings = config['settings']['data_files']
-    model_settings = config['settings']['model_settings']
+    # load ichorCNA model settings
+    model_settings = load_config_file(settings)
 
     # run ichorCNA
-    run_ichorCNA(ctdna_data_file, output_directory, code_settings, files_settings, model_settings)
+    run_ichorCNA(ctdna_data_file, output_directory, model_settings)
 
 
 def run_ichorCNA(
         wig_file_path: str,
         output_directory: str,
-        code_config: dict,
-        files_config: dict,
         settings_config: dict
 ) -> None:
     # code needed for ichorCNA
-    rscript = code_config['rscript']
-    repo = code_config['repo']
+    rscript = Settings.rscript
+    repo = Settings.repo
     sample_id = 'DummySampleID'
 
     # files needed for ichorCNA
-    genome_style = files_config['genome_style']
-    genome_build = files_config['genome_build']
-    gc_wig = files_config['gc_wig']
-    map_wig = files_config['map_wig']
-    centromere = files_config['centromere']
-    normal_panel = files_config['normal_panel']
+    genome_style = Settings.genome_style
+    genome_build = Settings.genome_build
+    gc_wig = Settings.gc_wig
+    map_wig = Settings.map_wig
+    centromere = Settings.centromere
+    normal_panel = Settings.normal_panel
 
     # model settings needed for ichorCNA
     estimate_normal = settings_config['estimate_normal']
