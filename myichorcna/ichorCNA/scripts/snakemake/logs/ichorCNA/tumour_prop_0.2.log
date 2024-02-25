@@ -1,0 +1,677 @@
+$WIG
+[1] "results/readDepth/tumour_prop_0.2.bin1000000.wig"
+
+$gcWig
+[1] "../../inst/extdata/gc_hg19_1000kb.wig"
+
+$mapWig
+[1] "../../inst/extdata/map_hg19_1000kb.wig"
+
+$normalPanel
+[1] "../../inst/extdata/HD_ULP_PoN_1Mb_median_normAutosome_mapScoreFiltered_median.rds"
+
+$exons.bed
+[1] "None"
+
+$id
+[1] "tumour_prop_0.2"
+
+$cLoading required package: data.table
+Loading required package: stats4
+Loading required package: BiocGenerics
+Loading required package: parallel
+
+Attaching package: 'BiocGenerics'
+
+The following objects are masked from 'package:parallel':
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+The following objects are masked from 'package:stats':
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from 'package:base':
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: 'S4Vectors'
+
+The following objects are masked from 'package:data.table':
+
+    first, second
+
+The following object is masked from 'package:base':
+
+    expand.grid
+
+Loading required package: IRanges
+
+Attaching package: 'IRanges'
+
+The following object is masked from 'package:data.table':
+
+    shift
+
+Loading required package: GenomeInfoDb
+
+Attaching package: 'ichorCNA'
+
+The following object is masked from 'package:HMMcopy':
+
+    HMMsegment
+
+Warning message:
+In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called 'BSgenome.Hsapiens.UCSC.hg19'
+Loading tumour file:tumour_prop_0.2
+Slurping: results/readDepth/tumour_prop_0.2.bin1000000.wig
+Parsing: fixedStep chrom=1 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=2 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=3 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=4 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=5 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=6 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=7 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=8 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=9 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=10 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=11 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=12 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=13 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=14 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=15 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=16 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=17 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=18 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=19 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=20 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=21 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=22 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=X start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=Y start=1 step=1000000 span=1000000
+Sorting by decreasing chromosome size
+Reading GC and mappability files
+Slurping: ../../inst/extdata/gc_hg19_1000kb.wig
+Parsing: fixedStep chrom=1 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=2 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=3 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=4 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=5 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=6 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=7 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=8 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=9 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=10 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=11 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=12 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=13 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=14 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=15 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=16 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=17 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=18 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=19 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=20 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=21 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=22 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=X start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=Y start=1 step=1000000 span=1000000
+Sorting by decreasing chromosome size
+Slurping: ../../inst/extdata/map_hg19_1000kb.wig
+Parsing: fixedStep chrom=1 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=2 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=3 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=4 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=5 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=6 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=7 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=8 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=9 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=10 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=11 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=12 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=13 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=14 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=15 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=16 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=17 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=18 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=19 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=20 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=21 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=22 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=X start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=Y start=1 step=1000000 span=1000000
+Sorting by decreasing chromosome size
+Correcting Tumour
+Removed 97 bins near centromeres.
+Applying filter on data...
+Correcting for GC bias...
+Correcting for mappability bias...
+Filtering low uniqueness regions with mappability score < 0.75
+Removed 4 bins near centromeres.
+Determining gender...Gender female
+Outputting to: results/ichorCNA/tumour_prop_0.2//tumour_prop_0.2.correctedDepth.txt
+Warning messages:
+1: In dir.create(paste0(outDir, "/", id, "/"), recursive = TRUE) :
+  'results/ichorCNA/tumour_prop_0.2//tumour_prop_0.2' already exists
+2: In regularize.values(x, y, ties, missing(ties), na.rm = na.rm) :
+  collapsing to unique 'x' values
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.6718, sp=0.5005, phi=1.976, lambda=2225.1,1614,2224.6,2222.3,2226.8,1857.4,1930.5, F=4365
+runEM iter 1  Log likelihood: 3744.96398246642
+runEM iter1 Time: 0.051 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.6949, sp=0.4998, phi=1.985, lambda=2224.4,2369.7,1913.4,2224.1,2224.9,1849.6,1799.1, F=4576
+runEM iter 2  Log likelihood: 4531.48543049444
+runEM iter2 Time: 0.031 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.7089, sp=0.4999, phi=1.991, lambda=2224.2,2748.9,1647.5,2223.9,2224.6,1720.1,1709.6, F=4605
+runEM iter 3  Log likelihood: 4622.78610568213
+runEM iter3 Time: 0.027 min.
+runEM iter4: Expectation
+runEM iter4: Maximization
+Sample1 n=0.7141, sp=0.5003, phi=1.991, lambda=2221.2,2867.2,1479.8,2223,2224.4,1653.8,1700.4, F=4607
+runEM iter 4  Log likelihood: 4641.87169437665
+runEM iter4 Time: 0.027 min.
+runEM iter5: Expectation
+runEM iter5: Maximization
+Sample1 n=0.7158, sp=0.5004, phi=1.99, lambda=2221.2,2867.2,1479.8,2223,2224.4,1653.8,1700.4, F=4607
+runEM iter 5  Log likelihood: 4643.633728126
+runEM iter5 Time: 0.012 min.
+runEM iter5: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter5
+runEM: Total elapsed time: 0.15min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.7236, sp=0.6536, phi=2.956, lambda=2224.5,2224.5,1422.2,638.91,2224.7,2223.3,1678.3, F=3653
+runEM iter 1  Log likelihood: 3159.07479241592
+runEM iter1 Time: 0.055 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.7602, sp=0.7142, phi=2.951, lambda=2224.5,2157.8,2016.5,1023.6,2224.7,2223.6,1824.1, F=4009
+runEM iter 2  Log likelihood: 3929.92830443571
+runEM iter2 Time: 0.046 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.7862, sp=0.7739, phi=2.956, lambda=2224.5,1955.4,2193,1329.8,2225.5,2000.3,1849.3, F=4071
+runEM iter 3  Log likelihood: 4049.88437930737
+runEM iter3 Time: 0.032 min.
+runEM iter4: Expectation
+runEM iter4: Maximization
+Sample1 n=0.8106, sp=0.8352, phi=2.966, lambda=2224.5,1314.3,2437.9,1542.6,2226.6,1740.8,1973.2, F=4179
+runEM iter 4  Log likelihood: 4154.83192607752
+runEM iter4 Time: 0.03 min.
+runEM iter5: Expectation
+runEM iter5: Maximization
+Sample1 n=0.8258, sp=0.8684, phi=2.975, lambda=2224.5,1152.1,2628.2,1597.7,2217.5,1696.7,1996.7, F=4229
+runEM iter 5  Log likelihood: 4233.57611088717
+runEM iter5 Time: 0.024 min.
+runEM iter6: Expectation
+runEM iter6: Maximization
+Sample1 n=0.8343, sp=0.8714, phi=2.985, lambda=2224.3,1086.8,2800.1,1615.6,2180.9,1676.8,2023.8, F=4262
+runEM iter 6  Log likelihood: 4278.67132536904
+runEM iter6 Time: 0.026 min.
+runEM iter7: Expectation
+runEM iter7: Maximization
+Sample1 n=0.8441, sp=0.8202, phi=2.979, lambda=2224.3,1005.6,2877.8,1659.3,2180.9,2275.5,2094.3, F=4316
+runEM iter 7  Log likelihood: 4324.36955033988
+runEM iter7 Time: 0.021 min.
+runEM iter8: Expectation
+runEM iter8: Maximization
+Sample1 n=0.8505, sp=0.7626, phi=2.966, lambda=2225.3,985.65,2954.3,1667.7,2179.2,2376.8,2574.1, F=4350
+runEM iter 8  Log likelihood: 4361.87446565707
+runEM iter8 Time: 0.02 min.
+runEM iter9: Expectation
+runEM iter9: Maximization
+Sample1 n=0.8564, sp=0.7032, phi=2.952, lambda=2220.4,1664.8,3019.9,1672.3,2174.2,2316.2,3554.9, F=4395
+runEM iter 9  Log likelihood: 4402.47682069733
+runEM iter9 Time: 0.024 min.
+runEM iter10: Expectation
+runEM iter10: Maximization
+Sample1 n=0.86, sp=0.6756, phi=2.947, lambda=2220.4,1664.8,3019.9,1672.3,2174.2,2316.1,3554.9, F=4402
+runEM iter 10  Log likelihood: 4424.56928190385
+runEM iter10 Time: 0.012 min.
+runEM iter11: Expectation
+runEM iter11: Maximization
+Sample1 n=0.8619, sp=0.6626, phi=2.945, lambda=2220.4,1664.8,3019.9,1672.3,2174.2,2316.2,3554.9, F=4409
+runEM iter 11  Log likelihood: 4434.98999582479
+runEM iter11 Time: 0.014 min.
+runEM iter12: Expectation
+runEM iter12: Maximization
+Sample1 n=0.8635, sp=0.6577, phi=2.944, lambda=1561.3,2007.7,3070.8,1678.5,2093,2396.9,3945, F=4415
+runEM iter 12  Log likelihood: 4440.66137577365
+runEM iter12 Time: 0.036 min.
+runEM iter13: Expectation
+runEM iter13: Maximization
+Sample1 n=0.8658, sp=0.6577, phi=2.942, lambda=1561.3,2007.7,3070.8,1678.5,2093,2396.9,3945, F=4426
+runEM iter 13  Log likelihood: 4451.87042895955
+runEM iter13 Time: 0.015 min.
+runEM iter14: Expectation
+runEM iter14: Maximization
+Sample1 n=0.8665, sp=0.6558, phi=2.941, lambda=1561.3,2007.7,3070.8,1678.5,2093,2396.9,3945, F=4426
+runEM iter 14  Log likelihood: 4454.21078781281
+runEM iter14 Time: 0.012 min.
+runEM iter14: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter14
+runEM: Total elapsed time: 0.37min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.6758, sp=0.5006, phi=1.976, lambda=2224.6,1648.4,2215.8,2221.1,2225,1769.7,1822.4, F=4372
+runEM iter 1  Log likelihood: 3807.76696349317
+runEM iter1 Time: 0.051 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.6973, sp=0.4999, phi=1.985, lambda=2224.3,2425.2,1918.8,2223.9,2224.6,1805.3,1782.2, F=4580
+runEM iter 2  Log likelihood: 4536.85591566563
+runEM iter2 Time: 0.03 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.7101, sp=0.4999, phi=1.99, lambda=2223.9,2778,1666.7,2223.7,2224.6,1696.9,1710.8, F=4606
+runEM iter 3  Log likelihood: 4625.37312077128
+runEM iter3 Time: 0.023 min.
+runEM iter4: Expectation
+runEM iter4: Maximization
+Sample1 n=0.7146, sp=0.5002, phi=1.99, lambda=2219.4,2879.8,1490.5,2222.7,2224.6,1647.3,1702.9, F=4607
+runEM iter 4  Log likelihood: 4641.77484376252
+runEM iter4 Time: 0.022 min.
+runEM iter5: Expectation
+runEM iter5: Maximization
+Sample1 n=0.716, sp=0.5003, phi=1.99, lambda=2219.4,2879.8,1490.5,2222.7,2224.6,1647.3,1702.9, F=4606
+runEM iter 5  Log likelihood: 4643.45144793607
+runEM iter5 Time: 0.011 min.
+runEM iter5: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter5
+runEM: Total elapsed time: 0.14min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.7591, sp=0.733, phi=2.967, lambda=2226,2252.4,1633.5,1108.6,2224.5,2221.8,1697.2, F=3824
+runEM iter 1  Log likelihood: 3268.08209349044
+runEM iter1 Time: 0.049 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.7875, sp=0.7845, phi=2.96, lambda=2224.6,2023.3,2104,1412.1,2226,2146.9,1878.9, F=4056
+runEM iter 2  Log likelihood: 4003.3399701677
+runEM iter2 Time: 0.037 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.8117, sp=0.8445, phi=2.967, lambda=2224.6,1292.3,2417.6,1566.4,2226.6,1750.3,1957.1, F=4175
+runEM iter 3  Log likelihood: 4147.47308116446
+runEM iter3 Time: 0.031 min.
+runEM iter4: Expectation
+runEM iter4: Maximization
+Sample1 n=0.8266, sp=0.8748, phi=2.976, lambda=2224.5,1126.5,2628.7,1605.5,2216.6,1664.8,1984.7, F=4228
+runEM iter 4  Log likelihood: 4232.07671989396
+runEM iter4 Time: 0.023 min.
+runEM iter5: Expectation
+runEM iter5: Maximization
+Sample1 n=0.835, sp=0.8747, phi=2.985, lambda=2224.3,1071.7,2802.9,1620,2179.6,1645.1,2019.9, F=4262
+runEM iter 5  Log likelihood: 4279.26070116552
+runEM iter5 Time: 0.027 min.
+runEM iter6: Expectation
+runEM iter6: Maximization
+Sample1 n=0.8443, sp=0.8205, phi=2.979, lambda=2222.5,1009.2,2880.5,1658.9,2180.6,2248.3,2092.2, F=4315
+runEM iter 6  Log likelihood: 4323.77577406639
+runEM iter6 Time: 0.02 min.
+runEM iter7: Expectation
+runEM iter7: Maximization
+Sample1 n=0.8506, sp=0.7619, phi=2.966, lambda=2221,996.94,2955.9,1667.3,2178.9,2362.8,2582, F=4349
+runEM iter 7  Log likelihood: 4361.14092043454
+runEM iter7 Time: 0.019 min.
+runEM iter8: Expectation
+runEM iter8: Maximization
+Sample1 n=0.8565, sp=0.7026, phi=2.952, lambda=2218.2,1683.6,3021,1672.6,2170.5,2311.2,3563.5, F=4395
+runEM iter 8  Log likelihood: 4402.8443579727
+runEM iter8 Time: 0.022 min.
+runEM iter9: Expectation
+runEM iter9: Maximization
+Sample1 n=0.8601, sp=0.6753, phi=2.947, lambda=2218.2,1683.6,3021,1672.6,2170.5,2311.2,3563.5, F=4402
+runEM iter 9  Log likelihood: 4424.90506678368
+runEM iter9 Time: 0.012 min.
+runEM iter10: Expectation
+runEM iter10: Maximization
+Sample1 n=0.862, sp=0.6624, phi=2.945, lambda=2218.2,1683.6,3021,1672.6,2170.5,2311.2,3563.5, F=4409
+runEM iter 10  Log likelihood: 4435.19504695974
+runEM iter10 Time: 0.021 min.
+runEM iter11: Expectation
+runEM iter11: Maximization
+Sample1 n=0.8636, sp=0.6577, phi=2.944, lambda=2218.2,1683.6,3021,1672.6,2170.5,2311.2,3563.5, F=4414
+runEM iter 11  Log likelihood: 4441.00349191728
+runEM iter11 Time: 0.012 min.
+runEM iter12: Expectation
+runEM iter12: Maximization
+Sample1 n=0.8653, sp=0.6562, phi=2.942, lambda=1459.6,1990.4,3077.8,1678,2068.4,2497,3914.2, F=4422
+runEM iter 12  Log likelihood: 4447.26759503443
+runEM iter12 Time: 0.035 min.
+runEM iter13: Expectation
+runEM iter13: Maximization
+Sample1 n=0.8664, sp=0.6558, phi=2.942, lambda=1459.6,1990.4,3077.8,1678,2068.4,2497,3914.2, F=4428
+runEM iter 13  Log likelihood: 4454.65666811771
+runEM iter13 Time: 0.012 min.
+runEM iter14: Expectation
+runEM iter14: Maximization
+Sample1 n=0.8668, sp=0.6534, phi=2.941, lambda=1459.6,1990.4,3077.8,1678,2068.4,2497,3914.2, F=4427
+runEM iter 14  Log likelihood: 4455.11763822756
+runEM iter14 Time: 0.016 min.
+runEM iter14: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter14
+runEM: Total elapsed time: 0.34min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.7565, sp=0.3546, phi=1.969, lambda=1760.8,1661.8,1015.9,2217.8,2235,1743.5,1804.4, F=4385
+runEM iter 1  Log likelihood: 3844.68374121353
+runEM iter1 Time: 0.054 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.7751, sp=0.3495, phi=1.975, lambda=2075,2494.3,2034.2,2209.3,2227.4,1856.6,1781.6, F=4626
+runEM iter 2  Log likelihood: 4571.90656690197
+runEM iter2 Time: 0.034 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.7853, sp=0.3472, phi=1.982, lambda=2215.6,2828.7,2106,2261.2,2224.6,1848.3,1743.5, F=4656
+runEM iter 3  Log likelihood: 4673.99272671048
+runEM iter3 Time: 0.037 min.
+runEM iter4: Expectation
+runEM iter4: Maximization
+Sample1 n=0.7896, sp=0.3467, phi=1.982, lambda=2224.9,2911.9,2157.7,2349.4,2224.4,1904.7,1752.7, F=4666
+runEM iter 4  Log likelihood: 4698.95618800551
+runEM iter4 Time: 0.023 min.
+runEM iter5: Expectation
+runEM iter5: Maximization
+Sample1 n=0.7905, sp=0.3474, phi=1.982, lambda=2224.9,2911.9,2157.7,2349.4,2224.4,1904.7,1752.7, F=4668
+runEM iter 5  Log likelihood: 4704.46381772007
+runEM iter5 Time: 0.011 min.
+runEM iter6: Expectation
+runEM iter6: Maximization
+Sample1 n=0.7906, sp=0.3481, phi=1.983, lambda=2224.9,2911.9,2157.7,2349.4,2224.4,1904.7,1752.7, F=4668
+runEM iter 6  Log likelihood: 4705.88664701289
+runEM iter6 Time: 0.02 min.
+runEM iter6: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter6
+runEM: Total elapsed time: 0.18min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.7749, sp=0.7261, phi=2.965, lambda=2224.7,2351.4,1684.9,1294,2221.3,2216.4,1650.3, F=3901
+runEM iter 1  Log likelihood: 3398.37966126028
+runEM iter1 Time: 0.057 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.7971, sp=0.7901, phi=2.968, lambda=2224.5,1816,2273.3,1429.1,2229.8,2032.7,1874, F=4115
+runEM iter 2  Log likelihood: 4060.99110338253
+runEM iter2 Time: 0.032 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.8177, sp=0.839, phi=2.972, lambda=2224.6,1295.1,2516.3,1567.4,2225.2,1799.2,2023.7, F=4215
+runEM iter 3  Log likelihood: 4200.32042800794
+runEM iter3 Time: 0.025 min.
+runEM iter4: Expectation
+runEM iter4: Maximization
+Sample1 n=0.8291, sp=0.8646, phi=2.981, lambda=2224.4,1204.5,2728.3,1593.9,2188,1686.6,2016.9, F=4248
+runEM iter 4  Log likelihood: 4260.17205461853
+runEM iter4 Time: 0.03 min.
+runEM iter5: Expectation
+runEM iter5: Maximization
+Sample1 n=0.8377, sp=0.8566, phi=2.985, lambda=2224.2,1109,2842.9,1627.7,2186.9,1967.8,2023.9, F=4281
+runEM iter 5  Log likelihood: 4299.71997743457
+runEM iter5 Time: 0.02 min.
+runEM iter6: Expectation
+runEM iter6: Maximization
+Sample1 n=0.8454, sp=0.8012, phi=2.977, lambda=2224.2,991.27,2904.7,1656.3,2186,2366.7,2224.4, F=4327
+runEM iter 6  Log likelihood: 4339.13167859346
+runEM iter6 Time: 0.02 min.
+runEM iter7: Expectation
+runEM iter7: Maximization
+Sample1 n=0.8523, sp=0.748, phi=2.962, lambda=2225.5,1076.2,2970.4,1672.5,2185.2,2383,2733.2, F=4360
+runEM iter 7  Log likelihood: 4373.185429186
+runEM iter7 Time: 0.021 min.
+runEM iter8: Expectation
+runEM iter8: Maximization
+Sample1 n=0.8573, sp=0.6959, phi=2.95, lambda=2196.6,1793.5,3031.7,1673.6,2162.1,2302.3,3647.2, F=4397
+runEM iter 8  Log likelihood: 4408.25749488863
+runEM iter8 Time: 0.031 min.
+runEM iter9: Expectation
+runEM iter9: Maximization
+Sample1 n=0.8605, sp=0.6718, phi=2.946, lambda=2196.6,1793.5,3031.7,1673.6,2162.1,2302.3,3647.2, F=4404
+runEM iter 9  Log likelihood: 4427.63238393693
+runEM iter9 Time: 0.012 min.
+runEM iter10: Expectation
+runEM iter10: Maximization
+Sample1 n=0.8623, sp=0.6611, phi=2.945, lambda=2196.6,1793.5,3031.7,1673.6,2162.1,2302.3,3647.2, F=4410
+runEM iter 10  Log likelihood: 4436.62043921608
+runEM iter10 Time: 0.012 min.
+runEM iter11: Expectation
+runEM iter11: Maximization
+Sample1 n=0.8639, sp=0.6572, phi=2.944, lambda=2196.6,1793.5,3031.7,1673.6,2162.1,2302.3,3647.2, F=4415
+runEM iter 11  Log likelihood: 4442.46125596978
+runEM iter11 Time: 0.016 min.
+runEM iter12: Expectation
+runEM iter12: Maximization
+Sample1 n=0.8656, sp=0.6561, phi=2.942, lambda=1448.4,1995.6,3079.4,1677.9,2059.5,2513.9,3922.1, F=4423
+runEM iter 12  Log likelihood: 4448.57977149214
+runEM iter12 Time: 0.032 min.
+runEM iter13: Expectation
+runEM iter13: Maximization
+Sample1 n=0.8665, sp=0.6553, phi=2.941, lambda=1448.4,1995.6,3079.4,1677.9,2059.5,2513.9,3922.1, F=4428
+runEM iter 13  Log likelihood: 4454.74604816592
+runEM iter13 Time: 0.012 min.
+runEM iter14: Expectation
+runEM iter14: Maximization
+Sample1 n=0.8668, sp=0.6529, phi=2.941, lambda=1448.4,1995.6,3079.4,1677.9,2059.5,2513.9,3922.1, F=4426
+runEM iter 14  Log likelihood: 4455.15733222207
+runEM iter14 Time: 0.012 min.
+runEM iter14: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter14
+runEM: Total elapsed time: 0.33min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.8388, sp=0.488, phi=1.977, lambda=1966.5,1808.4,1839.8,2204.9,2211.9,1914.9,2010.4, F=4447
+runEM iter 1  Log likelihood: 4179.11565956688
+runEM iter1 Time: 0.065 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.8369, sp=0.466, phi=1.968, lambda=2064.6,2778,1721.1,2204.9,2210.5,3643.3,2125.9, F=4807
+runEM iter 2  Log likelihood: 4743.20185599438
+runEM iter2 Time: 0.027 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.8366, sp=0.4733, phi=1.962, lambda=2060.6,3096.8,1831.1,2205.3,2211.6,3874.7,1952.4, F=4833
+runEM iter 3  Log likelihood: 4834.30911351035
+runEM iter3 Time: 0.022 min.
+runEM iter4: Expectation
+runEM iter4: Maximization
+Sample1 n=0.8352, sp=0.479, phi=1.961, lambda=2062.1,3203.2,1943.5,2206.5,2211.9,3877.8,1985, F=4837
+runEM iter 4  Log likelihood: 4860.19102541471
+runEM iter4 Time: 0.019 min.
+runEM iter5: Expectation
+runEM iter5: Maximization
+Sample1 n=0.8345, sp=0.4803, phi=1.961, lambda=2062.1,3203.2,1943.5,2206.5,2211.9,3877.8,1985, F=4834
+runEM iter 5  Log likelihood: 4864.43936811171
+runEM iter5 Time: 0.011 min.
+runEM iter5: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter5
+runEM: Total elapsed time: 0.15min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.8258, sp=0.4541, phi=2.967, lambda=2211.8,1920.9,1868.3,1614.1,2219.5,2212.2,1643.6, F=4095
+runEM iter 1  Log likelihood: 3786.07371108573
+runEM iter1 Time: 0.042 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.834, sp=0.5535, phi=2.974, lambda=2216.6,2146,2685.2,1630.6,2208.8,1703.9,3328.5, F=4409
+runEM iter 2  Log likelihood: 4350.70504753853
+runEM iter2 Time: 0.029 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.8382, sp=0.549, phi=2.978, lambda=2218.7,2302.3,2974.7,1584.1,2203.1,1699.7,3868.5, F=4443
+runEM iter 3  Log likelihood: 4450.67450237327
+runEM iter3 Time: 0.023 min.
+runEM iter4: Expectation
+runEM iter4: Maximization
+Sample1 n=0.8399, sp=0.5507, phi=2.977, lambda=2220.6,2454.1,3024.8,1584.1,2197.4,1960.7,3979.1, F=4452
+runEM iter 4  Log likelihood: 4475.01184322323
+runEM iter4 Time: 0.031 min.
+runEM iter5: Expectation
+runEM iter5: Maximization
+Sample1 n=0.8402, sp=0.5534, phi=2.977, lambda=2220.6,2454.1,3024.8,1584.1,2197.4,1960.7,3979.1, F=4451
+runEM iter 5  Log likelihood: 4478.77824429396
+runEM iter5 Time: 0.011 min.
+runEM iter5: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter5
+runEM: Total elapsed time: 0.14min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.8681, sp=0.3191, phi=1.989, lambda=1236.1,2522.4,1450.3,562.08,2208.4,734.98,2222.1, F=4485
+runEM iter 1  Log likelihood: 4201.39017420548
+runEM iter1 Time: 0.039 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.8525, sp=0.4188, phi=1.976, lambda=1709.2,2998.5,1598.5,1764.8,2194.9,2934.4,2233.8, F=4744
+runEM iter 2  Log likelihood: 4673.14817860908
+runEM iter2 Time: 0.032 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.8438, sp=0.4584, phi=1.972, lambda=1961.9,3093.6,1628.2,2167.9,2094.5,3812,2101.2, F=4810
+runEM iter 3  Log likelihood: 4800.32397938593
+runEM iter3 Time: 0.034 min.
+runEM iter4: Expectation
+runEM iter4: Maximization
+Sample1 n=0.8391, sp=0.4729, phi=1.965, lambda=2026.4,3158.5,1709.3,2204.5,2168,3893,1990.6, F=4825
+runEM iter 4  Log likelihood: 4836.94155689674
+runEM iter4 Time: 0.027 min.
+runEM iter5: Expectation
+runEM iter5: Maximization
+Sample1 n=0.8359, sp=0.4799, phi=1.962, lambda=2053.4,3208.7,1917.9,2209.5,2206.9,3882.2,1968, F=4838
+runEM iter 5  Log likelihood: 4857.80049324869
+runEM iter5 Time: 0.033 min.
+runEM iter6: Expectation
+runEM iter6: Maximization
+Sample1 n=0.8347, sp=0.481, phi=1.961, lambda=2053.4,3208.7,1917.9,2209.5,2206.9,3882.2,1968, F=4836
+runEM iter 6  Log likelihood: 4864.84507751357
+runEM iter6 Time: 0.012 min.
+runEM iter7: Expectation
+runEM iter7: Maximization
+Sample1 n=0.8343, sp=0.481, phi=1.961, lambda=2053.4,3208.7,1917.9,2209.5,2206.9,3882.2,1968, F=4833
+runEM iter 7  Log likelihood: 4865.1430676746
+runEM iter7 Time: 0.012 min.
+runEM iter7: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter7
+runEM: Total elapsed time: 0.19min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.907, sp=0.4695, phi=2.898, lambda=2070.6,1960.4,2301.7,1110.6,2196.7,2060.1,1573.6, F=4197
+runEM iter 1  Log likelihood: 3866.43125505507
+runEM iter1 Time: 0.047 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.9097, sp=0.3481, phi=2.915, lambda=2178.6,3656.6,3033.8,1787.3,2053.8,2139.1,1934.3, F=4479
+runEM iter 2  Log likelihood: 4446.22943844903
+runEM iter2 Time: 0.028 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.9105, sp=0.3209, phi=2.926, lambda=2185.5,3891.3,3167.8,1968.1,1987,2334.9,2060.3, F=4513
+runEM iter 3  Log likelihood: 4539.23250150073
+runEM iter3 Time: 0.025 min.
+runEM iter4: Expectation
+runEM iter4: Maximization
+Sample1 n=0.9105, sp=0.3143, phi=2.93, lambda=2185.5,3891.3,3167.8,1968.1,1987,2334.9,2060.3, F=4526
+runEM iter 4  Log likelihood: 4558.93532916555
+runEM iter4 Time: 0.014 min.
+runEM iter5: Expectation
+runEM iter5: Maximization
+Sample1 n=0.9102, sp=0.3109, phi=2.932, lambda=2185.5,3891.3,3167.8,1968.1,1987,2334.9,2060.3, F=4537
+runEM iter 5  Log likelihood: 4570.1567330568
+runEM iter5 Time: 0.012 min.
+runEM iter6: Expectation
+runEM iter6: Maximization
+Sample1 n=0.9099, sp=0.3075, phi=2.934, lambda=2185.5,3891.3,3167.8,1968.1,1987,2334.9,2060.3, F=4546
+runEM iter 6  Log likelihood: 4579.41797047827
+runEM iter6 Time: 0.012 min.
+runEM iter7: Expectation
+runEM iter7: Maximization
+Sample1 n=0.9098, sp=0.3011, phi=2.935, lambda=2185.5,3891.3,3167.8,1968.1,1987,2334.9,2060.3, F=4552
+runEM iter 7  Log likelihood: 4584.88859162739
+runEM iter7 Time: 0.021 min.
+runEM iter8: Expectation
+runEM iter8: Maximization
+Sample1 n=0.9096, sp=0.2908, phi=2.935, lambda=2185.5,3891.3,3167.8,1968.1,1987,2335,2060.3, F=4556
+runEM iter 8  Log likelihood: 4588.64879034197
+runEM iter8 Time: 0.014 min.
+runEM iter8: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter8
+runEM: Total elapsed time: 0.17min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.9076, sp=0.02945, phi=2.05, lambda=938.86,2381.2,1220.8,1510.7,2175.9,430.45,1479.6, F=4427
+runEM iter 1  Log likelihood: 4040.89588335848
+runEM iter1 Time: 0.063 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.8988, sp=0.0111, phi=2.031, lambda=1339.1,2917.7,1827,1529.7,2186.1,521.96,1699.3, F=4593
+runEM iter 2  Log likelihood: 4561.5649971971
+runEM iter2 Time: 0.033 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.8935, sp=0.00825, phi=2.026, lambda=1600.9,3054.3,1991,1519.7,2191.6,578.73,1551.8, F=4617
+runEM iter 3  Log likelihood: 4643.63390860119
+runEM iter3 Time: 0.025 min.
+runEM iter4: Expectation
+runEM iter4: Maximization
+Sample1 n=0.8865, sp=0.007114, phi=2.015, lambda=1767.8,3082.8,2042,1336.5,2196.1,675.93,1474.2, F=4639
+runEM iter 4  Log likelihood: 4673.34729158049
+runEM iter4 Time: 0.032 min.
+runEM iter5: Expectation
+runEM iter5: Maximization
+Sample1 n=0.8807, sp=0.006706, phi=2.007, lambda=1892.9,3059.4,2158.3,1118.6,2200.4,787.85,1517.5, F=4658
+runEM iter 5  Log likelihood: 4698.7539155001
+runEM iter5 Time: 0.033 min.
+runEM iter6: Expectation
+runEM iter6: Maximization
+Sample1 n=0.8718, sp=0.006537, phi=1.995, lambda=2087.4,3041.9,2128.1,874.43,2205.3,970.9,1593.8, F=4676
+runEM iter 6  Log likelihood: 4709.74218651474
+runEM iter6 Time: 0.025 min.
+runEM iter7: Expectation
+runEM iter7: Maximization
+Sample1 n=0.8623, sp=0.01402, phi=1.984, lambda=2425.8,3014.7,1964.8,1414.8,2307.4,1151.6,1632, F=4672
+runEM iter 7  Log likelihood: 4704.79896090952
+runEM iter7 Time: 0.041 min.
+runEM iter6: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter6
+runEM: Total elapsed time: 0.25min.
+runViterbi: Segmenting and classifying
+Total ULP-WGS HMM Runtime: 5.2 min.
+Writing segments to results/ichorCNA/tumour_prop_0.2//tumour_prop_0.2.seg
+Outputting to bin-level results to results/ichorCNA/tumour_prop_0.2//tumour_prop_0.2.cna.seg

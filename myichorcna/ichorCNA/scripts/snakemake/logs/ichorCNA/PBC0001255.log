@@ -1,0 +1,392 @@
+$WIG
+[1] "results/readDepth/PBC0001255.bin1000000.wig"
+
+$gcWig
+[1] "../../inst/extdata/gc_hg38_1000kb.wig"
+
+$mapWig
+[1] "../../inst/extdata/map_hg38_1000kb.wig"
+
+$normalPanel
+[1] "../../inst/extdata/HD_ULP_PoN_hg38_1Mb_median_normAutosome_median.rds"
+
+$exons.bed
+[1] "None"
+
+$id
+[1] "PBC0001255"
+
+$centromere
+[1] "../../iLoading required package: data.table
+Loading required package: stats4
+Loading required package: BiocGenerics
+Loading required package: parallel
+
+Attaching package: 'BiocGenerics'
+
+The following objects are masked from 'package:parallel':
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+The following objects are masked from 'package:stats':
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from 'package:base':
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: 'S4Vectors'
+
+The following objects are masked from 'package:data.table':
+
+    first, second
+
+The following objects are masked from 'package:base':
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+
+Attaching package: 'IRanges'
+
+The following object is masked from 'package:data.table':
+
+    shift
+
+Loading required package: GenomeInfoDb
+
+Attaching package: 'ichorCNA'
+
+The following object is masked from 'package:HMMcopy':
+
+    HMMsegment
+
+Warning message:
+In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called 'BSgenome.Hsapiens.UCSC.hg38'
+Loading tumour file:PBC0001255
+Slurping: results/readDepth/PBC0001255.bin1000000.wig
+Parsing: fixedStep chrom=chr1 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr2 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr3 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr4 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr5 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr6 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr7 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr8 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr9 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr10 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr11 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr12 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr13 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr14 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr15 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr16 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr17 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr18 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr19 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr20 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr21 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr22 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chrX start=1 step=1000000 span=1000000
+Sorting by decreasing chromosome size
+Reading GC and mappability files
+Slurping: ../../inst/extdata/gc_hg38_1000kb.wig
+Parsing: fixedStep chrom=chr1 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr2 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr3 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr4 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr5 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr6 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr7 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr8 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr9 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr10 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr11 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr12 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr13 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr14 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr15 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr16 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr17 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr18 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr19 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr20 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr21 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr22 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chrX start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chrY start=1 step=1000000 span=1000000
+Sorting by decreasing chromosome size
+Slurping: ../../inst/extdata/map_hg38_1000kb.wig
+Parsing: fixedStep chrom=chr1 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr2 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr3 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr4 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr5 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr6 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr7 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr8 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr9 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr10 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr11 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr12 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr13 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr14 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr15 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr16 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr17 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr18 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr19 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr20 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr21 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chr22 start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chrX start=1 step=1000000 span=1000000
+Parsing: fixedStep chrom=chrY start=1 step=1000000 span=1000000
+Sorting by decreasing chromosome size
+Correcting Tumour
+Removed 121 bins near centromeres.
+Applying filter on data...
+Correcting for GC bias...
+Correcting for mappability bias...
+Filtering low uniqueness regions with mappability score < 0.75
+Removed 0 bins near centromeres.
+Determining gender...Gender female
+Outputting to: results/ichorCNA/PBC0001255//PBC0001255.correctedDepth.txt
+Warning messages:
+1: In dir.create(paste0(outDir, "/", id, "/"), recursive = TRUE) :
+  'results/ichorCNA/PBC0001255//PBC0001255' already exists
+2: In regularize.values(x, y, ties, missing(ties), na.rm = na.rm) :
+  collapsing to unique 'x' values
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.5031, sp=0.5031, phi=2.009, lambda=22775,6444.6,22775,22883,22856,22481,22490, F=3474
+runEM iter 1  Log likelihood: 3386.89669899742
+runEM iter1 Time: 0.031 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.5093, sp=0.5002, phi=2.009, lambda=22775,6444.6,22775,22883,22856,22481,22490, F=3474
+runEM iter 2  Log likelihood: 3465.10113775984
+runEM iter2 Time: 0.012 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.5086, sp=0.5002, phi=2.009, lambda=22775,6444.6,22775,22883,22856,22481,22490, F=3474
+runEM iter 3  Log likelihood: 3465.10341695745
+runEM iter3 Time: 0.011 min.
+runEM iter3: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter3
+runEM: Total elapsed time: 0.054min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.5265, sp=0.4683, phi=3.012, lambda=22760,22745,6445,23023,22640,22544,22104, F=3097
+runEM iter 1  Log likelihood: 2979.61370292135
+runEM iter1 Time: 0.03 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.5311, sp=0.5, phi=3.012, lambda=22760,22745,6445,23023,22640,22544,22104, F=3097
+runEM iter 2  Log likelihood: 3080.96707004514
+runEM iter2 Time: 0.013 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.5279, sp=0.5, phi=3.012, lambda=22760,22745,6445,23023,22640,22544,22104, F=3097
+runEM iter 3  Log likelihood: 3080.97079058017
+runEM iter3 Time: 0.015 min.
+runEM iter3: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter3
+runEM: Total elapsed time: 0.059min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.5115, sp=0.5114, phi=2.01, lambda=22753,6444.6,22753,22880,22817,22418,22483, F=3474
+runEM iter 1  Log likelihood: 3386.89730208057
+runEM iter1 Time: 0.027 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.517, sp=0.5003, phi=2.01, lambda=22753,6444.6,22753,22880,22817,22418,22483, F=3474
+runEM iter 2  Log likelihood: 3465.09820472553
+runEM iter2 Time: 0.011 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.5158, sp=0.5003, phi=2.01, lambda=22753,6444.6,22753,22880,22817,22418,22483, F=3474
+runEM iter 3  Log likelihood: 3465.10181288808
+runEM iter3 Time: 0.012 min.
+runEM iter3: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter3
+runEM: Total elapsed time: 0.05min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.5814, sp=0.4149, phi=3.013, lambda=22749,22749,6445.2,22906,22792,22466,21296, F=3097
+runEM iter 1  Log likelihood: 2979.66226466545
+runEM iter1 Time: 0.028 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.5814, sp=0.4998, phi=3.013, lambda=22749,22749,6445.2,22906,22792,22466,21296, F=3097
+runEM iter 2  Log likelihood: 3080.93928921363
+runEM iter2 Time: 0.011 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.5748, sp=0.5, phi=3.013, lambda=22749,22749,6445.2,22906,22792,22466,21296, F=3097
+runEM iter 3  Log likelihood: 3080.94743811299
+runEM iter3 Time: 0.012 min.
+runEM iter3: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter3
+runEM: Total elapsed time: 0.051min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.5571, sp=0.5542, phi=2.011, lambda=22788,6444.6,22780,23090,22589,21995,22344, F=3474
+runEM iter 1  Log likelihood: 3386.91667189506
+runEM iter1 Time: 0.028 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.5594, sp=0.5018, phi=2.01, lambda=22788,6444.6,22780,23090,22589,21995,22344, F=3474
+runEM iter 2  Log likelihood: 3465.06056712832
+runEM iter2 Time: 0.01 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.5559, sp=0.5012, phi=2.01, lambda=22788,6444.6,22780,23090,22589,21995,22344, F=3474
+runEM iter 3  Log likelihood: 3465.07464611323
+runEM iter3 Time: 0.0098 min.
+runEM iter3: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter3
+runEM: Total elapsed time: 0.048min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.7337, sp=0.3724, phi=3.02, lambda=22735,22716,6446.6,22843,22777,22521,19897, F=3097
+runEM iter 1  Log likelihood: 2979.72822023809
+runEM iter1 Time: 0.029 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.7304, sp=0.4783, phi=3.019, lambda=22735,22716,6446.6,22843,22777,22521,19897, F=3097
+runEM iter 2  Log likelihood: 3080.72620192412
+runEM iter2 Time: 0.01 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.722, sp=0.4982, phi=3.019, lambda=22735,22716,6446.6,22843,22777,22521,19897, F=3097
+runEM iter 3  Log likelihood: 3080.73319614063
+runEM iter3 Time: 0.01 min.
+runEM iter3: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter3
+runEM: Total elapsed time: 0.05min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.7676, sp=0.6187, phi=2.02, lambda=22731,6446.2,22699,22939,22664,20642,21878, F=3474
+runEM iter 1  Log likelihood: 3386.76750991577
+runEM iter1 Time: 0.029 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.7651, sp=0.5186, phi=2.02, lambda=22731,6446.2,22699,22939,22664,20642,21878, F=3474
+runEM iter 2  Log likelihood: 3464.68899430956
+runEM iter2 Time: 0.01 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.7592, sp=0.5116, phi=2.019, lambda=22731,6446.2,22699,22939,22664,20642,21878, F=3474
+runEM iter 3  Log likelihood: 3464.63630294443
+runEM iter3 Time: 0.01 min.
+runEM iter2: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter2
+runEM: Total elapsed time: 0.049min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.8247, sp=0.3798, phi=3.029, lambda=22709,22676,6449.8,22616,22685,22665,20054, F=3097
+runEM iter 1  Log likelihood: 2980.24396185695
+runEM iter1 Time: 0.04 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.8213, sp=0.4203, phi=3.028, lambda=22709,22676,6449.8,22616,22685,22665,20054, F=3097
+runEM iter 2  Log likelihood: 3080.54640859232
+runEM iter2 Time: 0.011 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.8168, sp=0.4221, phi=3.027, lambda=22709,22676,6449.8,22616,22685,22665,20054, F=3097
+runEM iter 3  Log likelihood: 3080.54581866885
+runEM iter3 Time: 0.01 min.
+runEM iter2: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter2
+runEM: Total elapsed time: 0.061min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.9113, sp=0.6353, phi=2.053, lambda=22313,6466.8,22494,22987,22750,18195,15951, F=3475
+runEM iter 1  Log likelihood: 3388.37856277585
+runEM iter1 Time: 0.034 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.9053, sp=0.5941, phi=2.049, lambda=22313,6466.8,22494,22987,22750,18195,15951, F=3476
+runEM iter 2  Log likelihood: 3466.76532180529
+runEM iter2 Time: 0.011 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.9034, sp=0.6008, phi=2.048, lambda=22313,6466.8,22494,22987,22750,18195,15951, F=3476
+runEM iter 3  Log likelihood: 3466.42669155297
+runEM iter3 Time: 0.014 min.
+runEM iter2: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter2
+runEM: Total elapsed time: 0.059min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.9257, sp=0.4596, phi=3.065, lambda=22704,21504,6455.7,21965,22547,21860,13067, F=3096
+runEM iter 1  Log likelihood: 2980.8451667727
+runEM iter1 Time: 0.032 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.9265, sp=0.4934, phi=3.065, lambda=22704,21504,6455.7,21965,22547,21860,13067, F=3096
+runEM iter 2  Log likelihood: 3079.89760341636
+runEM iter2 Time: 0.017 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.9263, sp=0.4968, phi=3.065, lambda=22704,21504,6455.7,21965,22547,21860,13067, F=3096
+runEM iter 3  Log likelihood: 3079.93987732152
+runEM iter3 Time: 0.0099 min.
+runEM iter3: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter3
+runEM: Total elapsed time: 0.059min.
+runViterbi: Segmenting and classifying
+runEM: Initialization
+runEM iter1: Expectation
+runEM iter1: Maximization
+Sample1 n=0.9621, sp=0.5193, phi=2.125, lambda=20738,6489.3,20553,22408,22541,16408,11065, F=3476
+runEM iter 1  Log likelihood: 3390.56841137551
+runEM iter1 Time: 0.034 min.
+runEM iter2: Expectation
+runEM iter2: Maximization
+Sample1 n=0.9596, sp=0.5193, phi=2.117, lambda=20738,6489.3,20553,22408,22541,16408,11065, F=3477
+runEM iter 2  Log likelihood: 3467.82648953956
+runEM iter2 Time: 0.017 min.
+runEM iter3: Expectation
+runEM iter3: Maximization
+Sample1 n=0.9575, sp=0.5121, phi=2.111, lambda=20738,6489.3,20553,22408,22541,16408,11065, F=3478
+runEM iter 3  Log likelihood: 3468.53721038682
+runEM iter3 Time: 0.014 min.
+runEM iter3: Re-calculating responsibilties from converged parameters.
+runEM: Using optimal parameters from iter3
+runEM: Total elapsed time: 0.065min.
+runViterbi: Segmenting and classifying
+Total ULP-WGS HMM Runtime: 0.65 min.
+Writing segments to results/ichorCNA/PBC0001255//PBC0001255.seg
+Outputting to bin-level results to results/ichorCNA/PBC0001255//PBC0001255.cna.seg
