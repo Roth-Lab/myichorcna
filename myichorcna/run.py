@@ -1,29 +1,32 @@
 from myichorcna.utils import make_output_dirs, load_config_file
-from myichorcna.settings import Settings
+from myichorcna.settings import PathsManager
+
+from pathlib import Path
+
 import subprocess
 
 
 def inference(
         output_directory: str,
         ctdna_data_file: str,
-        settings: str,
+        ichorcna_settings: str,
 ) -> None:
     """
-    Runs ichorCNA on ctDNA data file with settings specified settings.
+    Runs ichorCNA on ctDNA data file with specified settings.
 
     Args:
-        ctdna_data_file: Path to ctDNA .wig file.
-        settings: Path to settings .yaml file.
         output_directory: Path to directory to output everything from ichorCNA.
+        ctdna_data_file: Path to ctDNA .wig file.
+        ichorcna_settings: Path to settings .yaml file.
     """
     # create output directories
     make_output_dirs(output_directory)
 
     # load ichorCNA model settings
-    model_settings = load_config_file(settings)
+    ichorcna_settings = load_config_file(ichorcna_settings)
 
     # run ichorCNA
-    run_ichorCNA(ctdna_data_file, output_directory, model_settings)
+    run_ichorCNA(ctdna_data_file, output_directory, ichorcna_settings['model_settings'])
 
 
 def run_ichorCNA(
@@ -31,18 +34,22 @@ def run_ichorCNA(
         output_directory: str,
         settings_config: dict
 ) -> None:
-    # code needed for ichorCNA
-    rscript = Settings.rscript
-    repo = Settings.repo
+    # fix sample ID not needed for my purposes
     sample_id = 'DummySampleID'
 
-    # files needed for ichorCNA
-    genome_style = Settings.genome_style
-    genome_build = Settings.genome_build
-    gc_wig = Settings.gc_wig
-    map_wig = Settings.map_wig
-    centromere = Settings.centromere
-    normal_panel = Settings.normal_panel
+    # code and files needed for ichorCNA
+    abs_path_run_script = Path(__file__).resolve().parent
+    paths_manager = PathsManager(abs_path_run_script)
+    repo = paths_manager.repo
+    rscript = paths_manager.rscript
+    gc_wig = paths_manager.gc_wig
+    map_wig = paths_manager.map_wig
+    centromere = paths_manager.centromere
+    normal_panel = paths_manager.normal_panel
+
+    # genome file styles
+    genome_style = paths_manager.genome_style
+    genome_build = paths_manager.genome_build
 
     # model settings needed for ichorCNA
     estimate_normal = settings_config['estimate_normal']
@@ -96,6 +103,8 @@ def run_ichorCNA(
               f"--plotFileType {plot_type} "\
               f"--plotYLim \'{plot_ylim}\' "\
               f"--outDir {output_directory}"
+
+    # change working directory
 
     # run command in shell
     subprocess.run(command, shell=True, check=True)

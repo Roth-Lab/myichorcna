@@ -19,7 +19,7 @@ from myichorcna.run import inference
 )
 @click.option(
     '-s',
-    '--settings',
+    '--ichorCNA-settings',
     type=click.STRING,
     required=True,
     help="Path to config file for settings of ichorCNA (.yaml)."
