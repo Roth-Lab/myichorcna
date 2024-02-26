@@ -6,6 +6,11 @@ setup(
     author='matteo lepur',
     author_email='matteolepur@stat.ubc.ca',
     packages=find_packages(),
+    package_data={
+        "myichorcna.ichorCNA.inst.ext": ["*.txt", "*.wig", "*.rds"],
+        "myichorcna.ichorCNA.R": ["*.R"],
+        "myichorcna.ichorCNA.scripts": ["*.R"]
+    },
     entry_points={
         'console_scripts': ['myichorcna = myichorcna.cli:main']
     }
