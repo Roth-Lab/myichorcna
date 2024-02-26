@@ -7,7 +7,7 @@ setup(
     author_email='matteolepur@stat.ubc.ca',
     packages=find_packages(),
     package_data={
-        "myichorcna.ichorCNA.inst.ext": ["*.txt", "*.wig", "*.rds"],
+        "myichorcna.ichorCNA.inst.extdata": ["*.txt", "*.wig", "*.rds"],
         "myichorcna.ichorCNA.R": ["*.R"],
         "myichorcna.ichorCNA.scripts": ["*.R"]
     },
