@@ -18,5 +18,5 @@ setup(
     entry_points={
         'console_scripts': ['myichorcna = myichorcna.cli:main']
     },
-    install_requires=RE
+    install_requires=REQUIREMENTS
 )
