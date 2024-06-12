@@ -22,13 +22,18 @@ def run_ichorCNA(
     gc_wig = paths_manager.gc_wig
     map_wig = paths_manager.map_wig
     centromere = paths_manager.centromere
-    normal_panel = paths_manager.normal_panel
 
     # genome file styles
     genome_style = paths_manager.genome_style
     genome_build = paths_manager.genome_build
 
+    if settings_config['normal_panel']:
+        normal_panel = paths_manager.normal_panel
+    else:
+        normal_panel = None
+
     # model settings needed for ichorCNA
+    normal_wig_file = settings_config['normal_wig_file']
     estimate_normal = settings_config['estimate_normal']
     estimate_ploidy = settings_config['estimate_ploidy']
     estimate_clonality = settings_config['estimate_clonality']
@@ -56,6 +61,7 @@ def run_ichorCNA(
               f"--genomeStyle {genome_style} "\
               f"--genomeBuild {genome_build} "\
               f"--WIG {wig_file_path} "\
+              f"--NORMWIG {normal_wig_file} "\
               f"--gcWig {gc_wig} "\
               f"--mapWig {map_wig} "\
               f"--centromere {centromere} "\

@@ -70,6 +70,7 @@ options(bitmapType='cairo')
 patientID <- opt$id
 tumour_file <- opt$WIG
 normal_file <- opt$NORMWIG
+print(normal_file)
 gcWig <- opt$gcWig
 mapWig <- opt$mapWig
 normal_panel <- opt$normalPanel

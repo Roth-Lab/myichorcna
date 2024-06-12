@@ -1,3 +1,5 @@
+normal_wig_file:
+normal_panel: FALSE
 estimate_normal: TRUE
 estimate_ploidy: TRUE
 estimate_clonality: TRUE
