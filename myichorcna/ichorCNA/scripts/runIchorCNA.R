@@ -107,8 +107,58 @@ outImage <- paste0(outDir,"/", patientID,".RData")
 genomeBuild <- opt$genomeBuild
 genomeStyle <- opt$genomeStyle
 chrs <- as.character(eval(parse(text = opt$chrs)))
-chrTrain <- as.character(eval(parse(text=opt$chrTrain))); 
-chrNormalize <- as.character(eval(parse(text=opt$chrNormalize))); 
+chrTrain <- as.character(eval(parse(text=opt$chrTrain)))
+chrNormalize <- as.character(eval(parse(text=opt$chrNormalize)))
+
+# patientID <- "DummypatientID"
+# tumour_file <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/examples/ctdna.wig'
+# normal_file <- NULL
+# gcWig <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/myichorcna/ichorCNA/inst/extdata/gc_hg19_500kb.wig'
+# mapWig <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/myichorcna/ichorCNA/inst/extdata/map_hg19_500kb.wig'
+# normal_panel <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/myichorcna/ichorCNA/inst/extdata/HD_ULP_PoN_500kb_median_normAutosome_mapScoreFiltered_median.rds'
+# exons.bed <- NULL  # "0" if none specified
+# centromere <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/myichorcna/ichorCNA/inst/extdata/GRCh37.p13_centromere_UCSC-gapTable.txt'
+# minMapScore <- 0.75
+# flankLength <- NULL
+# normal <- eval(parse(text = 'c(0.5,0.6,0.7,0.8,0.9,0.95)'))
+# scStates <- eval(parse(text = 'c(1,3)'))
+# lambda <- eval(parse(text = 'NULL'))
+# lambdaScaleHyperParam <- NULL
+# estimateNormal <- TRUE
+# estimatePloidy <- TRUE
+# estimateScPrevalence <- TRUE
+# maxFracCNASubclone <- 0.7
+# maxFracGenomeSubclone <- 0.5
+# minSegmentBins <- NULL
+# altFracThreshold <- NULL
+# ploidy <- eval(parse(text = 'c(2)'))
+# coverage <- NULL
+# maxCN <- eval(parse(text = 'c(5)'))
+# txnE <- 0.9999
+# txnStrength <- 10000
+# normalizeMaleX <- NULL
+# includeHOMD <- FALSE
+# minTumFracToCorrect <- NULL
+# fracReadsInChrYForMale <- 0.002
+# chrXMedianForMale <- -0.1
+# outDir <- 'examples/example-run'
+# libdir <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/myichorcna/ichorCNA'
+# plotFileType <- 'pdf'
+# plotYLim <- eval(parse(text = 'c(-2, 4)'))
+# gender <- NULL
+# outImage <- paste0(outDir,"/", patientID,".RData")
+# genomeBuild <- 'hg19'
+# genomeStyle <- 'UCSC'
+# chrs <- as.character(eval(parse(text = 'c(1:22)')))
+# chrTrain <- as.character(eval(parse(text = 'c(1:22)')))
+# chrNormalize <- as.character(eval(parse(text="c(1:22)")))
+#
+# flankLength <- 1e5
+# lambdaScaleHyperParam <- 3
+# minSegmentBins <- 50
+# altFracThreshold <- 0.05
+
+
 seqlevelsStyle(chrs) <- genomeStyle
 seqlevelsStyle(chrNormalize) <- genomeStyle
 seqlevelsStyle(chrTrain) <- genomeStyle

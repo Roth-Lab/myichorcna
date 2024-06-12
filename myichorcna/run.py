@@ -6,29 +6,6 @@ from pathlib import Path
 import subprocess
 
 
-def inference(
-        output_directory: str,
-        ctdna_data_file: str,
-        ichorcna_settings: str,
-) -> None:
-    """
-    Runs ichorCNA on ctDNA data file with specified settings.
-
-    Args:
-        output_directory: Path to directory to output everything from ichorCNA.
-        ctdna_data_file: Path to ctDNA .wig file.
-        ichorcna_settings: Path to settings .yaml file.
-    """
-    # create output directories
-    make_output_dirs(output_directory)
-
-    # load ichorCNA model settings
-    ichorcna_settings = load_config_file(ichorcna_settings)
-
-    # run ichorCNA
-    run_ichorCNA(ctdna_data_file, output_directory, ichorcna_settings['model_settings'])
-
-
 def run_ichorCNA(
         wig_file_path: str,
         output_directory: str,
@@ -108,3 +85,33 @@ def run_ichorCNA(
 
     # run command in shell
     subprocess.run(command, shell=True, check=True)
+
+
+def inference(
+        output_directory: str,
+        ctdna_data_file: str,
+        ichorcna_settings: str,
+) -> None:
+    """
+    Runs ichorCNA on ctDNA data file with specified settings.
+
+    Args:
+        output_directory: Path to directory to output everything from ichorCNA.
+        ctdna_data_file: Path to ctDNA .wig file.
+        ichorcna_settings: Path to settings .yaml file.
+    """
+    # create output directories
+    make_output_dirs(output_directory)
+
+    # load ichorCNA model settings
+    ichorcna_settings = load_config_file(ichorcna_settings)
+
+    # run ichorCNA
+    run_ichorCNA(ctdna_data_file, output_directory, ichorcna_settings['model_settings'])
+
+
+if __name__ == '__main__':
+    wig_file = "examples/ctdna.wig"
+    output_dir = "examples/example-run"
+    ichor_settings = "examples/settings.yaml"
+    inference(output_directory=output_dir, ctdna_data_file=wig_file, ichorcna_settings=ichor_settings)

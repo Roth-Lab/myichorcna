@@ -1,5 +1,9 @@
 from setuptools import find_packages, setup
 
+REQUIREMENTS = []
+for line in open('requirements.txt').readlines():
+    REQUIREMENTS.append(line)
+
 setup(
     name='myichorcna',
     description='A python package to run ichorCNA for my experiments',
@@ -13,5 +17,6 @@ setup(
     },
     entry_points={
         'console_scripts': ['myichorcna = myichorcna.cli:main']
-    }
+    },
+    install_requires=RE
 )
