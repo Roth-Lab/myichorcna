@@ -1,0 +1,11 @@
+README.md
+setup.py
+myichorcna/ichorCNA/__init__.py
+myichorcna/ichorCNA/R/__init__.py
+myichorcna/ichorCNA/inst/extdata/__init__.py
+myichorcna/ichorCNA/scripts/__init__.py
+myichorcna/myichorcna.egg-info/PKG-INFO
+myichorcna/myichorcna.egg-info/SOURCES.txt
+myichorcna/myichorcna.egg-info/dependency_links.txt
+myichorcna/myichorcna.egg-info/entry_points.txt
+myichorcna/myichorcna.egg-info/top_level.txt
