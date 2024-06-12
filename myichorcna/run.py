@@ -107,7 +107,7 @@ def inference(
     ichorcna_settings = load_config_file(ichorcna_settings)
 
     # run ichorCNA
-    run_ichorCNA(ctdna_data_file, output_directory, ichorcna_settings['model_settings'])
+    run_ichorCNA(ctdna_data_file, output_directory, ichorcna_settings)
 
 
 if __name__ == '__main__':
