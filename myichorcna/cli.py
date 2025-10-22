@@ -1,5 +1,5 @@
 import click
-from myichorcna.run import inference
+from myichorcna.run_ichorcna import run_ichorCNA
 
 
 @click.command()
@@ -24,8 +24,8 @@ from myichorcna.run import inference
     required=True,
     help="Path to config file for settings of ichorCNA (.yaml)."
 )
-def perform_inference(**kwargs):
-    inference(**kwargs)
+def run_ichorcna(**kwargs):
+    run_ichorCNA(**kwargs)
 
 
 @click.group(name='myichorcna')
@@ -33,7 +33,7 @@ def main():
     pass
 
 
-main.add_command(perform_inference)
+main.add_command(run_ichorcna)
 
 
 if __name__ == "__main__":

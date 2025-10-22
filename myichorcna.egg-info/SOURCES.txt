@@ -1,11 +1,11 @@
 README.md
 setup.py
 envs/ichorcna_packages.yaml
-examples/settings.yaml
 myichorcna/__init__.py
+myichorcna/call_ichorcna.py
 myichorcna/cli.py
-myichorcna/run.py
-myichorcna/settings.py
+myichorcna/paths.py
+myichorcna/run_ichorcna.py
 myichorcna/utils.py
 myichorcna.egg-info/PKG-INFO
 myichorcna.egg-info/SOURCES.txt

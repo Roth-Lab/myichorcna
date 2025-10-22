@@ -8,11 +8,11 @@ class RelativePaths:
     repo: str = "ichorCNA"
     rscript: str = "ichorCNA/scripts/runIchorCNA.R"
 
-    gc_wig: str = "ichorCNA/inst/extdata/gc_hg19_1000kb.wig"
-    map_wig: str = "ichorCNA/inst/extdata/map_hg19_1000kb.wig"
-    normal_panel: str = "ichorCNA/inst/extdata/HD_ULP_PoN_1Mb_median_normAutosome_mapScoreFiltered_median.rds"
-    centromere: str = "ichorCNA/inst/extdata/GRCh37.p13_centromere_UCSC-gapTable.txt"
-    genome_build: str = "hg19"  # not included in hg38
+    gc_wig: str = "ichorCNA/inst/extdata/gc_hg38_500kb.wig"
+    map_wig: str = "ichorCNA/inst/extdata/map_hg38_500kb.wig"
+    normal_panel: str = "ichorCNA/inst/extdata/HD_ULP_PoN_hg38_500kb_median_normAutosome_median.rds"
+    centromere: str = "ichorCNA/inst/extdata/GRCh38.GCA_000001405.2_centromere_acen.txt"
+    genome_build: str = "hg38"  # not included in hg38
     genome_style: str = "NCBI"
 
 
