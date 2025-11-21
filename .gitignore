@@ -3,3 +3,8 @@
 *results/
 *outputs/
 *examples/
+*data/
+*test/
+*test_dir/
+*ichorCNA_old/
+*logs/
