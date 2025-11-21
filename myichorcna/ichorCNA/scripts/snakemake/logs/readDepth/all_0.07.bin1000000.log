@@ -1,2 +1,0 @@
-BamRandomAccessController WARNING: could not find index file for BAM: /projects/molonc/roth_lab/keyang/ctDNA/simulate/simulated_data/0.07.bam
-Could not locate valid BAM index for input file. Build index with -b

@@ -13,14 +13,11 @@ myichorcna.egg-info/dependency_links.txt
 myichorcna.egg-info/entry_points.txt
 myichorcna.egg-info/requires.txt
 myichorcna.egg-info/top_level.txt
-myichorcna/ichorCNA/__init__.py
 myichorcna/ichorCNA/R/EM.R
-myichorcna/ichorCNA/R/__init__.py
 myichorcna/ichorCNA/R/output.R
 myichorcna/ichorCNA/R/plotting.R
 myichorcna/ichorCNA/R/segmentation.R
 myichorcna/ichorCNA/R/utils.R
-myichorcna/ichorCNA/inst/__init__.py
 myichorcna/ichorCNA/inst/extdata/GRCh37.p13_centromere_UCSC-gapTable.txt
 myichorcna/ichorCNA/inst/extdata/GRCh38.GCA_000001405.2_centromere_acen.txt
 myichorcna/ichorCNA/inst/extdata/HD_ULP_PoN_1Mb_median_normAutosome_mapScoreFiltered_median.rds
@@ -29,7 +26,6 @@ myichorcna/ichorCNA/inst/extdata/HD_ULP_PoN_hg38_1Mb_median_normAutosome_median.
 myichorcna/ichorCNA/inst/extdata/HD_ULP_PoN_hg38_500kb_median_normAutosome_median.rds
 myichorcna/ichorCNA/inst/extdata/MBC_315.ctDNA.reads.wig
 myichorcna/ichorCNA/inst/extdata/MBC_315_T2.ctDNA.reads.wig
-myichorcna/ichorCNA/inst/extdata/__init__.py
 myichorcna/ichorCNA/inst/extdata/cytoBand_hg38.txt
 myichorcna/ichorCNA/inst/extdata/gc_hg19_1000kb.wig
 myichorcna/ichorCNA/inst/extdata/gc_hg19_10kb.wig
@@ -47,6 +43,10 @@ myichorcna/ichorCNA/inst/extdata/map_hg38_1000kb.wig
 myichorcna/ichorCNA/inst/extdata/map_hg38_10kb.wig
 myichorcna/ichorCNA/inst/extdata/map_hg38_500kb.wig
 myichorcna/ichorCNA/inst/extdata/map_hg38_50kb.wig
-myichorcna/ichorCNA/scripts/__init__.py
 myichorcna/ichorCNA/scripts/createPanelOfNormals.R
 myichorcna/ichorCNA/scripts/runIchorCNA.R
+myichorcna/ichorCNA_old/__init__.py
+myichorcna/ichorCNA_old/R/__init__.py
+myichorcna/ichorCNA_old/inst/__init__.py
+myichorcna/ichorCNA_old/inst/extdata/__init__.py
+myichorcna/ichorCNA_old/scripts/__init__.py
