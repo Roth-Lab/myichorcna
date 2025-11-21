@@ -1,3 +1,2 @@
 samples:
-        E01665: ../../../projects/data/cfDNA/E01665.bam
-        E01653: ../../../projects/data/cfDNA/E01653.bam
+  tumor_sample1:  /path/to/bam/tumor.bam

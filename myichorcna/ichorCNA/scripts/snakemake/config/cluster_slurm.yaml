@@ -1,5 +1,5 @@
 __default__:
-    partition:  upgrade # users specified
+    partition:  campus # users specified
     mem:    4G
     time:   "1:0:0"
     ncpus:  1

@@ -1,24 +1,24 @@
 ## read depth params ##
-readCounterScript: /projects/molonc/roth_lab/keyang/packages/HMMcopy/hmmcopy_utils/bin/readCounter
+readCounterScript:  /path/to/HMMcopy/bin/readCounter
 chrs:
   1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y
 binSize:  1000000 # set window size to compute coverage
 
 ## ichorCNA params ##
-ichorCNA_libdir: /projects/molonc/scratch/kyang/ichorCNA
+ichorCNA_libdir: /path/to/git/software/ichorCNA
 # included in GitHub repo
+ichorCNA_rscript:  ../runIchorCNA.R
 # use panel matching same bin size (optional)
-ichorCNA_rscript: ../runIchorCNA.R
-ichorCNA_normalPanel: ../../inst/extdata/HD_ULP_PoN_500kb_median_normAutosome_mapScoreFiltered_median.rds
+ichorCNA_normalPanel: ../../inst/extdata/HD_ULP_PoN_1Mb_median_normAutosome_mapScoreFiltered_median.rds
 # must use gc wig file corresponding to same binSize (required)
-ichorCNA_gcWig: ../../inst/extdata/gc_hg19_500kb.wig
+ichorCNA_gcWig: ../../inst/extdata/gc_hg19_1000kb.wig
 # must use map wig file corresponding to same binSize (required)
-ichorCNA_mapWig:  ../../inst/extdata/map_hg19_500kb.wig
+ichorCNA_mapWig:  ../../inst/extdata/map_hg19_1000kb.wig
 # use bed file if sample has targeted regions, eg. exome data (optional)
 ichorCNA_exons:  NULL
 ichorCNA_centromere:  ../../inst/extdata/GRCh37.p13_centromere_UCSC-gapTable.txt
 ichorCNA_minMapScore: 0.75
-ichorCNA_chrs:  c(1:22)
+ichorCNA_chrs:  c(1:22, \"X\")
 ichorCNA_fracReadsInChrYForMale: 0.002
 ichorCNA_genomeBuild:  hg19
 ichorCNA_genomeStyle:  NCBI

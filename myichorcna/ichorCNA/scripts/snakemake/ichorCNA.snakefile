@@ -1,4 +1,4 @@
-configfile: "config/config_hg38.yaml"
+configfile: "config/config.yaml"
 configfile: "config/samples.yaml"
 
 rule all:
@@ -51,13 +51,13 @@ rule ichorCNA:
 		includeHOMD=config["ichorCNA_includeHOMD"],
 		chrs=config["ichorCNA_chrs"],
 		chrTrain=config["ichorCNA_chrTrain"],
-		genomeBuild=config["ichorCNA_genomeBuild"], # not included in hg38
+		genomeBuild=config["ichorCNA_genomeBuild"],
 		genomeStyle=config["ichorCNA_genomeStyle"],
 		centromere=config["ichorCNA_centromere"],
-		fracReadsChrYMale=config["ichorCNA_fracReadsInChrYForMale"], # not included in hg38
-		minMapScore=config["ichorCNA_minMapScore"], # not included in hg38
-		maxFracGenomeSubclone=config["ichorCNA_maxFracGenomeSubclone"], # not included in hg38
-		maxFracCNASubclone=config["ichorCNA_maxFracCNASubclone"], # not included in hg38
+		fracReadsChrYMale=config["ichorCNA_fracReadsInChrYForMale"],
+		minMapScore=config["ichorCNA_minMapScore"],
+		maxFracGenomeSubclone=config["ichorCNA_maxFracGenomeSubclone"],
+		maxFracCNASubclone=config["ichorCNA_maxFracCNASubclone"],
 		exons=config["ichorCNA_exons"],
 		txnE=config["ichorCNA_txnE"],
 		txnStrength=config["ichorCNA_txnStrength"],
@@ -66,8 +66,6 @@ rule ichorCNA:
 		libdir=config["ichorCNA_libdir"]
 	resources:
 		mem=4
-	conda:
-		"R.yaml"
 	log:
 		"logs/ichorCNA/{tumor}.log"	
 	shell:

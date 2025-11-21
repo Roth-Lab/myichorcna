@@ -1,5 +1,5 @@
 ## read depth params ##
-readCounterScript: /projects/molonc/roth_lab/keyang/packages/HMMcopy/hmmcopy_utils/bin/readCounter
+readCounterScript:  /path/to/HMMcopy/bin/readCounter
 #chrs:
 #  1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y
 chrs: # use if want UCSC chromosome naming for hg38
@@ -21,13 +21,6 @@ ichorCNA_exons:  NULL
 ichorCNA_centromere:  ../../inst/extdata/GRCh38.GCA_000001405.2_centromere_acen.txt
 ichorCNA_genomeStyle:  UCSC
 ichorCNA_chrs:  paste0('chr', c(1:22, \"X\"))
-
-ichorCNA_minMapScore: 0.75
-ichorCNA_genomeBuild:  hg38
-ichorCNA_fracReadsInChrYForMale: 0.002
-ichorCNA_maxFracGenomeSubclone: 0.5
-ichorCNA_maxFracCNASubclone: 0.7
-
 # chrs used for training ichorCNA parameters, e.g. tumor fraction. 
 ichorCNA_chrTrain:  paste0('chr', c(1:22))
 # non-tumor fraction parameter restart values; higher values should be included for cfDNA
