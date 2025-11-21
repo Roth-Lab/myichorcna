@@ -53,6 +53,7 @@ option_list <- list(
   make_option(c("--txnStrength"), type="numeric", default=1e7, help = "Transition pseudo-counts. Exponent should be the same as the number of decimal places of --txnE. Default: [%default]"),
   make_option(c("--plotFileType"), type="character", default="pdf", help = "File format for output plots. Default: [%default]"),
 	make_option(c("--plotYLim"), type="character", default="c(-2,2)", help = "ylim to use for chromosome plots. Default: [%default]"),
+  make_option(c("--plotSols"), type="logical", default=TRUE, help = "Plot solutions if specified: [%default]"),
   make_option(c("--outDir"), type="character", default="./", help = "Output Directory. Default: [%default]"),
   make_option(c("--libdir"), type = "character", default=NULL, help = "Script library path. Usually exclude this argument unless custom modifications have been made to the ichorCNA R package code and the user would like to source those R files. Default: [%default]")
 )
@@ -70,6 +71,7 @@ options(bitmapType='cairo')
 patientID <- opt$id
 tumour_file <- opt$WIG
 normal_file <- opt$NORMWIG
+print(normal_file)
 gcWig <- opt$gcWig
 mapWig <- opt$mapWig
 normal_panel <- opt$normalPanel
@@ -107,8 +109,59 @@ outImage <- paste0(outDir,"/", patientID,".RData")
 genomeBuild <- opt$genomeBuild
 genomeStyle <- opt$genomeStyle
 chrs <- as.character(eval(parse(text = opt$chrs)))
-chrTrain <- as.character(eval(parse(text=opt$chrTrain))); 
-chrNormalize <- as.character(eval(parse(text=opt$chrNormalize))); 
+chrTrain <- as.character(eval(parse(text=opt$chrTrain)))
+chrNormalize <- as.character(eval(parse(text=opt$chrNormalize)))
+plotSols <- as.logical(opt$plotSols)
+
+# patientID <- "DummypatientID"
+# tumour_file <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/examples/ctdna.wig'
+# normal_file <- NULL
+# gcWig <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/myichorcna/ichorCNA/inst/extdata/gc_hg19_500kb.wig'
+# mapWig <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/myichorcna/ichorCNA/inst/extdata/map_hg19_500kb.wig'
+# normal_panel <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/myichorcna/ichorCNA/inst/extdata/HD_ULP_PoN_500kb_median_normAutosome_mapScoreFiltered_median.rds'
+# exons.bed <- NULL  # "0" if none specified
+# centromere <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/myichorcna/ichorCNA/inst/extdata/GRCh37.p13_centromere_UCSC-gapTable.txt'
+# minMapScore <- 0.75
+# flankLength <- NULL
+# normal <- eval(parse(text = 'c(0.5,0.6,0.7,0.8,0.9,0.95)'))
+# scStates <- eval(parse(text = 'c(1,3)'))
+# lambda <- eval(parse(text = 'NULL'))
+# lambdaScaleHyperParam <- NULL
+# estimateNormal <- TRUE
+# estimatePloidy <- TRUE
+# estimateScPrevalence <- TRUE
+# maxFracCNASubclone <- 0.7
+# maxFracGenomeSubclone <- 0.5
+# minSegmentBins <- NULL
+# altFracThreshold <- NULL
+# ploidy <- eval(parse(text = 'c(2)'))
+# coverage <- NULL
+# maxCN <- eval(parse(text = 'c(5)'))
+# txnE <- 0.9999
+# txnStrength <- 10000
+# normalizeMaleX <- NULL
+# includeHOMD <- FALSE
+# minTumFracToCorrect <- NULL
+# fracReadsInChrYForMale <- 0.002
+# chrXMedianForMale <- -0.1
+# outDir <- 'examples/example-run'
+# libdir <- '/home/matteo/Desktop/anything-cfClone/code/models/myichorcna/myichorcna/ichorCNA'
+# plotFileType <- 'pdf'
+# plotYLim <- eval(parse(text = 'c(-2, 4)'))
+# gender <- NULL
+# outImage <- paste0(outDir,"/", patientID,".RData")
+# genomeBuild <- 'hg19'
+# genomeStyle <- 'UCSC'
+# chrs <- as.character(eval(parse(text = 'c(1:22)')))
+# chrTrain <- as.character(eval(parse(text = 'c(1:22)')))
+# chrNormalize <- as.character(eval(parse(text="c(1:22)")))
+#
+# flankLength <- 1e5
+# lambdaScaleHyperParam <- 3
+# minSegmentBins <- 50
+# altFracThreshold <- 0.05
+
+
 seqlevelsStyle(chrs) <- genomeStyle
 seqlevelsStyle(chrNormalize) <- genomeStyle
 seqlevelsStyle(chrTrain) <- genomeStyle
@@ -185,9 +238,9 @@ for (i in 1:numSamples) {
                                        targetedSequences = targetedSequences, chrXMedianForMale = chrXMedianForMale,
                                        genomeStyle = genomeStyle, fracReadsInChrYForMale = fracReadsInChrYForMale,
                                        chrNormalize = chrNormalize, mapScoreThres = minMapScore)
-  tumour_copy[[id]] <- counts$counts #as(counts$counts, "GRanges")
 
-	# write.table(tumour_copy[[id]], file='test.txt', row.names=F, col.names=T, quote=F, sep="\t")
+
+  tumour_copy[[id]] <- counts$counts #as(counts$counts, "GRanges")
   gender <- counts$gender
   ## load in normal file if provided 
   if (!is.null(normal_file) && normal_file != "None" && normal_file != "NULL"){
@@ -398,11 +451,13 @@ for(i in 1:length(ind)) {
   if (i == length(ind)){
   	turnDevOff <- TRUE
   }
-  plotGWSolution(hmmResults.cor, s=s, outPlotFile=outPlotFile, plotFileType="pdf", 
-                     logR.column = "logR", call.column = "Corrected_Call",
-                     plotYLim=plotYLim, estimateScPrevalence=estimateScPrevalence, 
-                     seqinfo = seqinfo,
-                     turnDevOn = turnDevOn, turnDevOff = turnDevOff, main=mainName[ind[i]])
+  if (plotSols) {
+    plotGWSolution(hmmResults.cor, s=s, outPlotFile=outPlotFile, plotFileType="pdf", 
+                      logR.column = "logR", call.column = "Corrected_Call",
+                      plotYLim=plotYLim, estimateScPrevalence=estimateScPrevalence, 
+                      seqinfo = seqinfo,
+                      turnDevOn = turnDevOn, turnDevOff = turnDevOff, main=mainName[ind[i]])
+  }
 }
 
 hmmResults.cor <- results[[ind[1]]]
@@ -418,8 +473,10 @@ outFile <- paste0(outDir, "/", patientID, ".params.txt")
 outputParametersToFile(hmmResults.cor, file = outFile)
 
 ## plot solutions for all samples 
-plotSolutions(hmmResults.cor, tumour_copy, chrs, outDir, numSamples=numSamples,
-              logR.column = "logR", call.column = "Corrected_Call",
-              plotFileType=plotFileType, plotYLim=plotYLim, seqinfo = seqinfo,
-              estimateScPrevalence=estimateScPrevalence, maxCN=maxCN)
+if (plotSols){
+  plotSolutions(hmmResults.cor, tumour_copy, chrs, outDir, numSamples=numSamples,
+                logR.column = "logR", call.column = "Corrected_Call",
+                plotFileType=plotFileType, plotYLim=plotYLim, seqinfo = seqinfo,
+                estimateScPrevalence=estimateScPrevalence, maxCN=maxCN)
+}
 
