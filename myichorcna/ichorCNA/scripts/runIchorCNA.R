@@ -186,8 +186,6 @@ for (i in 1:numSamples) {
                                        genomeStyle = genomeStyle, fracReadsInChrYForMale = fracReadsInChrYForMale,
                                        chrNormalize = chrNormalize, mapScoreThres = minMapScore)
   tumour_copy[[id]] <- counts$counts #as(counts$counts, "GRanges")
-
-	# write.table(tumour_copy[[id]], file='test.txt', row.names=F, col.names=T, quote=F, sep="\t")
   gender <- counts$gender
   ## load in normal file if provided 
   if (!is.null(normal_file) && normal_file != "None" && normal_file != "NULL"){
