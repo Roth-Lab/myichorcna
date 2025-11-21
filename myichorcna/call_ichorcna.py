@@ -1,88 +1,148 @@
-from myichorcna.paths import PathsManager
 from pathlib import Path
 import subprocess
+import yaml
 
 
-def call_ichorCNA(
-        wig_file_path: str,
-        output_directory: str,
-        settings_config: dict
+class PathsManager:
+    def __init__(self):
+        self.myichorcna = Path(__file__).resolve().parent
+        self.ichorCNA = self.myichorcna.joinpath('ichorCNA')
+
+    @property
+    def repo(self) -> Path:
+        return self.myichorcna.joinpath('ichorCNA')
+    
+    @property
+    def scripts(self) -> Path:
+        return self.repo.joinpath('scripts')
+    
+    @property
+    def extdata(self) -> Path:
+        return self.repo.joinpath('inst','extdata')
+
+    @property
+    def ichorcna_rscript(self) -> Path:
+        return self.scripts.joinpath('runIchorCNA.R')
+
+    @property
+    def gc_wig(self) -> Path:
+        return self.extdata.joinpath('gc_hg38_500kb.wig')
+
+    @property
+    def map_wig(self) -> Path:
+        return self.extdata.joinpath('map_hg38_500kb.wig')
+    
+    @property
+    def normal_panel(self) -> Path:
+        return self.extdata.joinpath('HD_ULP_PoN_hg38_500kb_median_normAutosome_median.rds')
+
+    @property
+    def centromere(self) -> Path:
+        return self.extdata.joinpath('GRCh38.GCA_000001405.2_centromere_acen.txt')
+
+    @property
+    def genome_build(self) -> str:
+        return 'hg38'
+
+    @property
+    def genome_style(self) -> str:
+        return "NCBI"
+
+
+def run_ichorCNA(
+    output_dir: str, 
+    ctdna_wig_file: str,
+    ichorcna_params: str, 
+    sample_id: str = 'DummySampleID'
 ) -> None:
-    # fix sample ID not needed for my purposes
-    sample_id = 'DummySampleID'
+    output_dir = Path(output_dir)
+    output_dir.mkdir(exist_ok=True, parents=True)
+    settings = yaml.safe_load(open(ichorcna_params, 'r'))
+    settings['WIG'] = ctdna_wig_file
+    settings['id'] = sample_id
+    settings['outDir'] = output_dir
+    call_ichorCNA(ichorParams=settings)
 
-    # code and files needed for ichorCNA
-    abs_path_run_script = Path(__file__).resolve().parent
-    paths_manager = PathsManager(abs_path_run_script)
-    repo = paths_manager.repo
-    rscript = paths_manager.rscript
-    gc_wig = paths_manager.gc_wig
-    map_wig = paths_manager.map_wig
-    centromere = paths_manager.centromere
 
-    # genome file styles
-    genome_style = paths_manager.genome_style
-    genome_build = paths_manager.genome_build
+def call_ichorCNA(ichorParams: dict) -> None:
+    # needed from ichorCNA
+    paths_manager = PathsManager()
+    ichorParams['libdir'] = paths_manager.repo
+    ichorParams['RScript'] = paths_manager.ichorcna_rscript
+    _run(**ichorParams)
 
-    if settings_config['normal_panel']:
-        normal_panel = paths_manager.normal_panel
-    else:
-        normal_panel = None
-
-    # model settings needed for ichorCNA
-    normal_wig_file = settings_config['normal_wig_file']
-    estimate_normal = settings_config['estimate_normal']
-    estimate_ploidy = settings_config['estimate_ploidy']
-    estimate_clonality = settings_config['estimate_clonality']
-    normal_restarts = settings_config['normal_restarts']
-    ploidy = settings_config['ploidy']
-    sc_states = settings_config['subclone_states']
-    max_cn = settings_config['max_cn']
-    min_map_score = settings_config['min_map_score']
-    max_frac_genome_subclone = settings_config['max_frac_genome_subclone']
-    max_frac_cna_subclone = settings_config['max_frac_cna_subclone']
-    frac_reads_chry_male = settings_config['frac_reads_chry_male']
-    chrs = settings_config['chrs']
-    chrs_train = settings_config['chrs_train']
-    exons_bed = settings_config['exons']
-    include_homd = settings_config['include_homd']
-    txn_e = settings_config['txn_e']
-    txn_strength = settings_config['txn_strength']
-    plot_type = settings_config['plot_file_type']
-    plot_ylim = settings_config['plot_ylim']
+ 
+def _run(
+    RScript: str,
+    libdir: str,
+    id: str, 
+    genomeStyle: str,
+    genomeBuild: str,
+    WIG: str,
+    NORMALWIG: str,
+    gcWig: str,
+    mapWig: str,
+    normalPanel: str,
+    centromere: str,
+    normal: str,
+    maxCN: str,
+    ploidy: str,
+    includeHOMD: str,
+    chrs: str,
+    chrTrain: str,
+    estimateNormal: str,
+    estimatePloidy: str,
+    estimateScPrevalence: str,
+    scStates: str,
+    exons: str,
+    txnE: str,
+    txnStrength: str,
+    minMapScore: str,
+    fracReadsInChrYForMale: str,
+    maxFracGenomeSubclone: str,
+    maxFracCNASubclone: str,
+    plotFileType: str,
+    plotYlim: str,
+    outDir: str,
+):
 
     # create command to run
-    command = f"Rscript {rscript} " \
-              f"--id {sample_id} " \
-              f"--libdir {repo} "\
-              f"--genomeStyle {genome_style} "\
-              f"--genomeBuild {genome_build} "\
-              f"--WIG {wig_file_path} "\
-              f"--NORMWIG {normal_wig_file} "\
-              f"--gcWig {gc_wig} "\
-              f"--mapWig {map_wig} "\
+    command = f"Rscript {RScript} " \
+              f"--id {id} " \
+              f"--libdir {libdir} "\
+              f"--genomeStyle {genomeStyle} "\
+              f"--genomeBuild {genomeBuild} "\
+              f"--WIG {WIG} "\
+              f"--NORMWIG {NORMALWIG} "\
+              f"--gcWig {gcWig} "\
+              f"--mapWig {mapWig} "\
               f"--centromere {centromere} "\
-              f"--normalPanel {normal_panel} "\
+              f"--normalPanel {normalPanel} "\
               f"--ploidy \'{ploidy}\' "\
-              f"--normal \'{normal_restarts}\' "\
-              f"--maxCN {max_cn} "\
-              f"--includeHOMD {include_homd} "\
+              f"--normal \'{normal}\' "\
+              f"--maxCN {maxCN} "\
+              f"--includeHOMD {includeHOMD} "\
               f"--chrs \'{chrs}\' "\
-              f"--chrTrain \'{chrs_train}\' "\
-              f"--estimateNormal {estimate_normal} "\
-              f"--estimatePloidy {estimate_ploidy} "\
-              f"--estimateScPrevalence {estimate_clonality} "\
-              f"--scStates \'{sc_states}\' "\
-              f"--exons.bed {exons_bed} "\
-              f"--txnE {txn_e} "\
-              f"--txnStrength {txn_strength} "\
-              f"--minMapScore {min_map_score} "\
-              f"--fracReadsInChrYForMale {frac_reads_chry_male} "\
-              f"--maxFracGenomeSubclone {max_frac_genome_subclone} "\
-              f"--maxFracCNASubclone {max_frac_cna_subclone} "\
-              f"--plotFileType {plot_type} "\
-              f"--plotYLim \'{plot_ylim}\' "\
-              f"--outDir {output_directory}"
+              f"--chrTrain \'{chrTrain}\' "\
+              f"--estimateNormal {estimateNormal} "\
+              f"--estimatePloidy {estimatePloidy} "\
+              f"--estimateScPrevalence {estimateScPrevalence} "\
+              f"--scStates \'{scStates}\' "\
+              f"--exons.bed {exons} "\
+              f"--txnE {txnE} "\
+              f"--txnStrength {txnStrength} "\
+              f"--minMapScore {minMapScore} "\
+              f"--fracReadsInChrYForMale {fracReadsInChrYForMale} "\
+              f"--maxFracGenomeSubclone {maxFracGenomeSubclone} "\
+              f"--maxFracCNASubclone {maxFracCNASubclone} "\
+              f"--plotFileType {plotFileType} "\
+              f"--plotYLim \'{plotYlim}\' "\
+              f"--outDir {outDir}"
     
-    # run command in shell
-    subprocess.run(command, shell=True, check=True)
+    try:
+        subprocess.run(command, shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print("Command failed")
+        return False
+        
+

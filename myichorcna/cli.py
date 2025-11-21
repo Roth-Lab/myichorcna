@@ -1,30 +1,37 @@
 import click
-from myichorcna.run_ichorcna import run_ichorCNA
-
+from myichorcna.call_ichorcna import run_ichorCNA
 
 @click.command()
 @click.option(
     '-o',
-    '--output-directory',
+    '--output-dir',
     type=click.STRING,
     required=True,
     help="Path to directory to output results from ichorCNA."
 )
 @click.option(
     '-c',
-    '--ctdna-data-file',
+    '--ctdna-wig-file',
     type=click.STRING,
     required=True,
     help="Path to read counts of ctDNA data outputted by readCounter (.wig)"
 )
 @click.option(
+    "-d",
+    '--sample-id',
+    default='DummySampleID',
+    type=click.STRING,
+    required=False,
+    help="cfDNA sample ID"
+)
+@click.option(
     '-s',
-    '--ichorCNA-settings',
+    '--ichorcna-params',
     type=click.STRING,
     required=True,
     help="Path to config file for settings of ichorCNA (.yaml)."
 )
-def run_ichorcna(**kwargs):
+def run(**kwargs):
     run_ichorCNA(**kwargs)
 
 
@@ -33,7 +40,7 @@ def main():
     pass
 
 
-main.add_command(run_ichorcna)
+main.add_command(run)
 
 
 if __name__ == "__main__":
