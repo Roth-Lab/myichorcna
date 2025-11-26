@@ -2,7 +2,6 @@ from pathlib import Path
 import subprocess
 import yaml
 
-
 class PathsManager:
     def __init__(self):
         self.myichorcna = Path(__file__).resolve().parent
@@ -23,30 +22,10 @@ class PathsManager:
     @property
     def ichorcna_rscript(self) -> Path:
         return self.scripts.joinpath('runIchorCNA.R')
-
-    @property
-    def gc_wig(self) -> Path:
-        return self.extdata.joinpath('gc_hg38_500kb.wig')
-
-    @property
-    def map_wig(self) -> Path:
-        return self.extdata.joinpath('map_hg38_500kb.wig')
     
     @property
-    def normal_panel(self) -> Path:
-        return self.extdata.joinpath('HD_ULP_PoN_hg38_500kb_median_normAutosome_median.rds')
-
-    @property
-    def centromere(self) -> Path:
-        return self.extdata.joinpath('GRCh38.GCA_000001405.2_centromere_acen.txt')
-
-    @property
-    def genome_build(self) -> str:
-        return 'hg38'
-
-    @property
-    def genome_style(self) -> str:
-        return "NCBI"
+    def ichorcna_hmmsegment_rscript(self) -> Path:
+        return self.scripts.joinpath('runHMMsegment.R')
 
 
 def run_ichorCNA(
@@ -61,18 +40,16 @@ def run_ichorCNA(
     settings['WIG'] = ctdna_wig_file
     settings['id'] = sample_id
     settings['outDir'] = output_dir
-    call_ichorCNA(ichorParams=settings)
-
-
-def call_ichorCNA(ichorParams: dict) -> None:
+    
     # needed from ichorCNA
     paths_manager = PathsManager()
-    ichorParams['libdir'] = paths_manager.repo
-    ichorParams['RScript'] = paths_manager.ichorcna_rscript
-    _run(**ichorParams)
+    settings['libdir'] = paths_manager.repo
+    settings['RScript'] = paths_manager.ichorcna_rscript
+    
+    r_ichorcna(**settings)
 
  
-def _run(
+def r_ichorcna(
     RScript: str,
     libdir: str,
     id: str, 
@@ -132,6 +109,87 @@ def _run(
               f"--txnE {txnE} "\
               f"--txnStrength {txnStrength} "\
               f"--minMapScore {minMapScore} "\
+              f"--fracReadsInChrYForMale {fracReadsInChrYForMale} "\
+              f"--maxFracGenomeSubclone {maxFracGenomeSubclone} "\
+              f"--maxFracCNASubclone {maxFracCNASubclone} "\
+              f"--plotFileType {plotFileType} "\
+              f"--plotYLim \'{plotYlim}\' "\
+              f"--outDir {outDir}"
+    
+    try:
+        subprocess.run(command, shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print("Command failed")
+        return False
+
+
+def run_hmmsegment(
+    output_dir: str, 
+    ctdna_tsv_file: str,
+    ichorcna_params: str, 
+    sample_id: str = 'DummySampleID'
+) -> None:
+    output_dir = Path(output_dir)
+    output_dir.mkdir(exist_ok=True, parents=True)
+    settings = yaml.safe_load(open(ichorcna_params, 'r'))
+    settings['copy'] = ctdna_tsv_file
+    settings['id'] = sample_id
+    settings['outDir'] = output_dir
+    
+    # needed from ichorCNA
+    paths_manager = PathsManager()
+    settings['libdir'] = paths_manager.repo
+    settings['RScript'] = paths_manager.ichorcna_hmmsegment_rscript
+    
+    r_hmmsegment(**settings)
+
+
+def r_hmmsegment(
+    RScript: str,
+    libdir: str,
+    id: str,
+    copy: str,
+    genomeStyle: str,
+    genomeBuild: str,
+    normal: str,
+    maxCN: str,
+    ploidy: str,
+    includeHOMD: str,
+    chrs: str,
+    chrTrain: str,
+    estimateNormal: str,
+    estimatePloidy: str,
+    estimateScPrevalence: str,
+    scStates: str,
+    txnE: str,
+    txnStrength: str,
+    fracReadsInChrYForMale: str,
+    maxFracGenomeSubclone: str,
+    maxFracCNASubclone: str,
+    plotFileType: str,
+    plotYlim: str,
+    outDir: str,
+):
+
+    # create command to run
+    command = f"Rscript {RScript} " \
+              f"--id {id} " \
+              f"--libdir {libdir} "\
+              f"--copy {copy} "\
+              f"--genomeStyle {genomeStyle} "\
+              f"--genomeBuild {genomeBuild} "\
+              f"--ploidy \'{ploidy}\' "\
+              f"--normal \'{normal}\' "\
+              f"--maxCN {maxCN} "\
+              f"--includeHOMD {includeHOMD} "\
+              f"--chrs \'{chrs}\' "\
+              f"--chrTrain \'{chrTrain}\' "\
+              f"--estimateNormal {estimateNormal} "\
+              f"--estimatePloidy {estimatePloidy} "\
+              f"--estimateScPrevalence {estimateScPrevalence} "\
+              f"--scStates \'{scStates}\' "\
+              f"--txnE {txnE} "\
+              f"--txnStrength {txnStrength} "\
               f"--fracReadsInChrYForMale {fracReadsInChrYForMale} "\
               f"--maxFracGenomeSubclone {maxFracGenomeSubclone} "\
               f"--maxFracCNASubclone {maxFracCNASubclone} "\
