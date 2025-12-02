@@ -10,6 +10,7 @@ setup(
     author='matteo lepur',
     author_email='matteolepur@stat.ubc.ca',
     packages=find_packages(),
+    include_package_data=True,
     package_data={
         "myichorcna.ichorCNA.inst.extdata": ["*.txt", "*.wig", "*.rds"],
         "myichorcna.ichorCNA.R": ["*.R"],
