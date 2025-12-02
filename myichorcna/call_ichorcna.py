@@ -26,6 +26,10 @@ class PathsManager:
     @property
     def ichorcna_hmmsegment_rscript(self) -> Path:
         return self.scripts.joinpath('runHMMsegment.R')
+    
+    @property
+    def ichorcna_hmmsegment_cor_rscript(self) -> Path:
+        return self.scripts.joinpath('runHMMsegmentCorrection.R')
 
 
 def run_ichorCNA(
@@ -203,4 +207,89 @@ def r_hmmsegment(
         print("Command failed")
         return False
         
+def run_hmmsegment_cor(
+    output_dir: str, 
+    ctdna_tsv_file: str,
+    ichorcna_params: str, 
+    sample_id: str = 'DummySampleID'
+) -> None:
+    output_dir = Path(output_dir)
+    output_dir.mkdir(exist_ok=True, parents=True)
+    settings = yaml.safe_load(open(ichorcna_params, 'r'))
+    settings['copy'] = ctdna_tsv_file
+    settings['id'] = sample_id
+    settings['outDir'] = output_dir
+    
+    # needed from ichorCNA
+    paths_manager = PathsManager()
+    settings['libdir'] = paths_manager.repo
+    settings['RScript'] = paths_manager.ichorcna_hmmsegment_cor_rscript
+    
+    r_hmmsegment_cor(**settings)
 
+
+def r_hmmsegment_cor(
+    RScript: str,
+    libdir: str,
+    id: str,
+    copy: str,
+    genomeStyle: str,
+    genomeBuild: str,
+    normal: str,
+    maxCN: str,
+    ploidy: str,
+    includeHOMD: str,
+    chrs: str,
+    chrTrain: str,
+    estimateNormal: str,
+    estimatePloidy: str,
+    estimateScPrevalence: str,
+    scStates: str,
+    txnE: str,
+    txnStrength: str,
+    fracReadsInChrYForMale: str,
+    maxFracGenomeSubclone: str,
+    maxFracCNASubclone: str,
+    plotFileType: str,
+    plotYlim: str,
+    outDir: str,
+):
+
+    # create command to run
+    command = f"Rscript {RScript} " \
+              f"--id {id} " \
+              f"--libdir {libdir} "\
+              f"--copy {copy} "\
+              f"--genomeStyle {genomeStyle} "\
+              f"--genomeBuild {genomeBuild} "\
+              f"--ploidy \'{ploidy}\' "\
+              f"--normal \'{normal}\' "\
+              f"--maxCN {maxCN} "\
+              f"--includeHOMD {includeHOMD} "\
+              f"--chrs \'{chrs}\' "\
+              f"--chrTrain \'{chrTrain}\' "\
+              f"--estimateNormal {estimateNormal} "\
+              f"--estimatePloidy {estimatePloidy} "\
+              f"--estimateScPrevalence {estimateScPrevalence} "\
+              f"--scStates \'{scStates}\' "\
+              f"--txnE {txnE} "\
+              f"--txnStrength {txnStrength} "\
+              f"--fracReadsInChrYForMale {fracReadsInChrYForMale} "\
+              f"--maxFracGenomeSubclone {maxFracGenomeSubclone} "\
+              f"--maxFracCNASubclone {maxFracCNASubclone} "\
+              f"--plotFileType {plotFileType} "\
+              f"--plotYLim \'{plotYlim}\' "\
+              f"--outDir {outDir}"
+    
+    try:
+        subprocess.run(command, shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print("Command failed")
+        params_txt_file = outDir.joinpath(f"{id}", f"{id}.params.txt")
+        params_txt_file.parent.mkdir(exist_ok=True, parents=True)
+        with open(params_txt_file, 'w') as f:
+            f.write("Failed running ichor!")
+        print("created file")
+    
+    
+        
