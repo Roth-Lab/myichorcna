@@ -1,6 +1,6 @@
 click
 PyYAML
 setuptools
-os
 pathlib
-subprocess
+subprocess.run
+# os-sys
