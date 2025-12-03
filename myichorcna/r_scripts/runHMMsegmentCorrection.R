@@ -1,32 +1,13 @@
-# file:   ichorCNA.R
-# authors: Gavin Ha, Ph.D.
-#          Fred Hutch
-# contact: <gha@fredhutch.org>
-#
-#         Justin Rhoades
-#          Broad Institute
-# contact: <rhoades@broadinstitute.org>
-
-# ichorCNA: https://github.com/broadinstitute/ichorCNA
-# date:   July 24, 2019
-# description: Hidden Markov model (HMM) to analyze Ultra-low pass whole genome sequencing (ULP-WGS) data.
-# This script is the main script to run the HMM.
-
 library(optparse)
 
 option_list <- list(
-  # make_option(c("--id"), type = "character", default="test", help = "Patient ID. Default: [%default]"),
   make_option(c("--id"), type = "character", default="test_hmmsegment_cor", help = "Patient ID. Default: [%default]"),
-  # make_option(c("--copy"), type = "character", default="NULL", help = "Path to tumor WIG file. Required."),
-  # make_option(c("--copy"), type = "character", default="test_HMMSegment/do_preproc/test.correctedDepth.txt", help = "Path to tumor WIG file. Required."),
   make_option(c("--copy"), type = "character", default="examples/data/cov_5_tc_0_replicate_0.tsv.gz", help = "Path to tumor WIG file. Required."),
   make_option(c("--normal"), type="character", default="c(0.5)", help = "Initial normal contamination; can be more than one value if additional normal initializations are desired. Default: [%default]"),
-  # make_option(c("--normal"), type="character", default="c(0.1, 0.2, 0.3, 0.5)", help = "Initial normal contamination; can be more than one value if additional normal initializations are desired. Default: [%default]"),
   make_option(c("--scStates"), type="character", default="NULL", help = "Subclonal states to consider. Default: [%default]"),
   make_option(c("--coverage"), type="numeric", default=NULL, help = "PICARD sequencing coverage. Default: [%default]"),
   make_option(c("--lambda"), type="character", default="NULL", help="Initial Student's t precision; must contain 4 values (e.g. c(1500,1500,1500,1500)); if not provided then will automatically use based on variance of data. Default: [%default]"),
   make_option(c("--lambdaScaleHyperParam"), type="numeric", default=3, help="Hyperparameter (scale) for Gamma prior on Student's-t precision. Default: [%default]"),
-  #	make_option(c("--kappa"), type="character", default=50, help="Initial state distribution"),
   make_option(c("--ploidy"), type="character", default="2", help = "Initial tumour ploidy; can be more than one value if additional ploidy initializations are desired. Default: [%default]"),
   make_option(c("--maxCN"), type="numeric", default=7, help = "Total clonal CN states. Default: [%default]"),
   make_option(c("--estimateNormal"), type="logical", default=TRUE, help = "Estimate normal. Default: [%default]"),
@@ -49,10 +30,8 @@ option_list <- list(
   make_option(c("--txnStrength"), type="numeric", default=1e7, help = "Transition pseudo-counts. Exponent should be the same as the number of decimal places of --txnE. Default: [%default]"),
   make_option(c("--plotFileType"), type="character", default="pdf", help = "File format for output plots. Default: [%default]"),
 	make_option(c("--plotYLim"), type="character", default="c(-2,2)", help = "ylim to use for chromosome plots. Default: [%default]"),
-  # make_option(c("--outDir"), type="character", default="./", help = "Output Directory. Default: [%default]"),
-  # make_option(c("--libdir"), type = "character", default=NULL, help = "Script library path. Usually exclude this argument unless custom modifications have been made to the ichorCNA R package code and the user would like to source those R files. Default: [%default]")
-  make_option(c("--outDir"), type="character", default="outputs", help = "Output Directory. Default: [%default]"),
-  make_option(c("--libdir"), type = "character", default="myichorcna/ichorCNA", help = "Script library path. Usually exclude this argument unless custom modifications have been made to the ichorCNA R package code and the user would like to source those R files. Default: [%default]")
+  make_option(c("--outDir"), type="character", default="./", help = "Output Directory. Default: [%default]"),
+  make_option(c("--libdir"), type = "character", default=NULL, help = "Script library path. Usually exclude this argument unless custom modifications have been made to the ichorCNA R package code and the user would like to source those R files. Default: [%default]")
 )
 parseobj <- OptionParser(option_list=option_list)
 opt <- parse_args(parseobj)

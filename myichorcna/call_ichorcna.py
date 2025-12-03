@@ -5,33 +5,24 @@ import yaml
 class PathsManager:
     def __init__(self):
         self.myichorcna = Path(__file__).resolve().parent
-        self.ichorCNA = self.myichorcna.joinpath('ichorCNA')
-
+        
     @property
-    def repo(self) -> Path:
+    def ichorcna_repo(self) -> Path:
         return self.myichorcna.joinpath('ichorCNA')
-    
-    @property
-    def scripts(self) -> Path:
-        return self.repo.joinpath('scripts')
-    
-    @property
-    def extdata(self) -> Path:
-        return self.repo.joinpath('inst','extdata')
 
     @property
     def ichorcna_rscript(self) -> Path:
-        return self.scripts.joinpath('runIchorCNA.R')
+        return self.myichorcna.joinpath('ichorCNA', 'scripts', 'runIchorCNA.R')
     
     @property
-    def ichorcna_hmmsegment_rscript(self) -> Path:
-        return self.scripts.joinpath('runHMMsegment.R')
+    def hmmsegment_corr_rscript(self) -> Path:
+        return self.myichorcna.joinpath('r_scripts', 'runHMMsegmentCorrection.R')
     
     @property
-    def ichorcna_hmmsegment_cor_rscript(self) -> Path:
-        return self.scripts.joinpath('runHMMsegmentCorrection.R')
-
-
+    def hmmsegment_rscript(self) -> Path:
+        return self.myichorcna.joinpath('r_scripts', 'runHMMsegment.R')
+    
+    
 def run_ichorCNA(
     output_dir: str, 
     ctdna_wig_file: str,
@@ -47,7 +38,7 @@ def run_ichorCNA(
     
     # needed from ichorCNA
     paths_manager = PathsManager()
-    settings['libdir'] = paths_manager.repo
+    settings['libdir'] = paths_manager.ichorcna_repo
     settings['RScript'] = paths_manager.ichorcna_rscript
     
     r_ichorcna(**settings)
@@ -142,8 +133,8 @@ def run_hmmsegment(
     
     # needed from ichorCNA
     paths_manager = PathsManager()
-    settings['libdir'] = paths_manager.repo
-    settings['RScript'] = paths_manager.ichorcna_hmmsegment_rscript
+    settings['libdir'] = paths_manager.ichorcna_repo
+    settings['RScript'] = paths_manager.hmmsegment_rscript
     
     r_hmmsegment(**settings)
 
@@ -222,8 +213,8 @@ def run_hmmsegment_cor(
     
     # needed from ichorCNA
     paths_manager = PathsManager()
-    settings['libdir'] = paths_manager.repo
-    settings['RScript'] = paths_manager.ichorcna_hmmsegment_cor_rscript
+    settings['libdir'] = paths_manager.ichorcna_repo
+    settings['RScript'] = paths_manager.hmmsegment_corr_rscript
     
     r_hmmsegment_cor(**settings)
 
