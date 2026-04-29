@@ -403,6 +403,22 @@ for(i in 1:length(ind)) {
                      turnDevOn = turnDevOn, turnDevOff = turnDevOff, main=mainName[ind[i]])
 }
 
+for(i in 1:length(ind)) {
+  tmp_out_dir = paste0(outDir, "/", "hmm_solns", "/", ind[i], "/")
+  dir.create(tmp_out_dir, recursive = TRUE)
+  hmmResults.cor <- results[[ind[i]]]
+  hmmResults.cor$results$loglik <- as.data.frame(loglik)
+  hmmResults.cor$results$gender <- gender$gender
+  hmmResults.cor$results$chrYCov <- gender$chrYCovRatio
+  hmmResults.cor$results$chrXMedian <- gender$chrXMedian
+  hmmResults.cor$results$coverage <- coverage
+
+  outputHMM(cna = hmmResults.cor$cna, segs = hmmResults.cor$results$segs, 
+                        results = hmmResults.cor$results, patientID = patientID, outDir=tmp_out_dir)
+  outFile <- paste0(tmp_out_dir, "/", patientID, ".params.txt")
+  outputParametersToFile(hmmResults.cor, file = outFile)
+}
+
 hmmResults.cor <- results[[ind[1]]]
 hmmResults.cor$results$loglik <- as.data.frame(loglik)
 hmmResults.cor$results$gender <- gender$gender
