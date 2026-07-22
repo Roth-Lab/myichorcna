@@ -7,8 +7,6 @@ for line in open('requirements.txt').readlines():
 setup(
     name='myichorcna',
     description='A python package to run ichorCNA for my experiments',
-    author='matteo lepur',
-    author_email='matteolepur@stat.ubc.ca',
     packages=find_packages(),
     include_package_data=True,
     package_data={"myichorcna.ichorCNA": ["*"]},

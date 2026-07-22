@@ -9,3 +9,8 @@
 *ichorCNA_old/
 *logs/
 .vscode/
+tests_cli/
+build/
+myichorcna.egg-info
+test-dir/
+**.egg-info**
